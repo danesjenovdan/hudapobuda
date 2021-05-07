@@ -1,0 +1,108 @@
+from django.utils.translation import gettext_lazy as _
+from wagtail.core import blocks
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.contrib.table_block.blocks import TableBlock
+
+class ExternalLinkBlock(blocks.StructBlock):
+    style = blocks.ChoiceBlock(
+        choices=[
+            ('plain', 'Navaden'),
+            ('button', 'Gumb'),
+        ],
+        label=_('Stil povezave'),
+    )
+    name = blocks.CharBlock(label=_('Ime'))
+    url = blocks.URLBlock(label=_('Povezava'))
+
+    class Meta:
+        label = _('Zunanja povezava')
+        icon = 'link'
+
+
+class PageLinkBlock(blocks.StructBlock):
+    style = blocks.ChoiceBlock(
+        choices=[
+            ('plain', 'Navaden'),
+            ('button', 'Gumb'),
+        ],
+        label=_('Stil povezave'),
+    )
+    name = blocks.CharBlock(required=False, label=_('Ime'), help_text=_('Če je prazno se uporabi naslov strani.'))
+    page = blocks.PageChooserBlock(label=_('Stran'))
+
+    class Meta:
+        label = _('Povezava do strani')
+        icon = 'link'
+
+
+class ContentBlock(blocks.StreamBlock):
+    headline = blocks.StructBlock(
+        [
+            ('title', blocks.CharBlock(label=_('Naslov'))),
+            ('description', blocks.TextBlock(required=False, label=_('Opis'))),
+            ('image', ImageChooserBlock(required=False, label=_('Slika'))),
+        ],
+        label=_('Naslov'),
+        template='home/blocks/headline.html',
+        icon='title',
+    )
+    badge = blocks.StructBlock(
+        [
+            ('line_one', blocks.CharBlock(required=False, label=_('Prva vrstica'))),
+            ('line_two', blocks.CharBlock(required=False, label=_('Druga vrstica'))),
+        ],
+        label=_('Značka'),
+        template='home/blocks/badge.html',
+        icon='pick',
+    )
+    rich_text = blocks.StreamBlock(
+        [
+            ('text', blocks.RichTextBlock(
+                label=_('Besedilo'),
+            )),
+            ('table', TableBlock(
+                label=_('Tabela'),
+                template='home/blocks/table.html',
+            )),
+        ],
+        label=_('Obogateno besedilo'),
+        template='home/blocks/rich_text.html',
+        icon='pilcrow',
+    )
+
+    class Meta:
+        label = _('Vsebina')
+        icon = 'snippet'
+
+
+class ColorSectionBlock(blocks.StructBlock):
+    color = blocks.ChoiceBlock(
+        choices=[
+            ('white', 'Bela'),
+            ('blue', 'Modra'),
+            ('yellow', 'Rumena'),
+            ('pink', 'Roza'),
+        ],
+        label=_('Barva'),
+    )
+    body = ContentBlock()
+
+    class Meta:
+        label = _('Vsebinski odsek z barvo')
+        template = 'home/blocks/color_section.html'
+        icon = 'snippet'
+
+
+class SectionBlock(blocks.StreamBlock):
+    color_section = ColorSectionBlock()
+    scrolling_banner = blocks.StructBlock(
+        [('text', blocks.TextBlock(label=_('Besedilo')))],
+        label=_('Drsna pasica'),
+        template='home/blocks/scrolling_banner.html',
+        icon='horizontalrule',
+    )
+
+    class Meta:
+        label = _('Vsebinski odsek')
+        template = 'home/blocks/section.html'
+        icon = 'snippet'

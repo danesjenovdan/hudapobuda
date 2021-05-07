@@ -1,0 +1,36 @@
+.bg-section {
+  background-color: #fff;
+}
+
+.bg-section--blue {
+  background-color: #abafd6;
+}
+
+.bg-section--yellow {
+  background-color: #fff7b0;
+}
+
+.bg-section--pink {
+  background-color: #f4b7d1;
+}
+
+.custom-badge {
+  position: absolute;
+  top: -75px;
+  background-color: #fff7b0;
+}
+
+.scrolling-banner {
+  background-color: #000;
+  overflow: hidden;
+}
+
+.scrolling-banner span {
+  color: #f4b7d1;
+  white-space: nowrap;
+}
+
+.table th,
+.table td {
+  border: 1px solid #000;
+}

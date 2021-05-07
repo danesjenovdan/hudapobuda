@@ -1,21 +1,34 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}template-homepage{% endblock %}
+{% block body_class %}page page--home{% endblock %}
 
 {% block extra_css %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+{% include "home/includes/header.html" with show_logo=False %}
+
+<div class="bg-section bg-section--white">
+    <header class="container">
+        <div class="row">
+            <div class="col-5">
+                <h1>{{ page.title }}</h1>
+                <h2>{{ page.subtitle }}</h2>
+            </div>
+            <div class="col-7">
+                <div>{% image page.image width-820 class="img-fluid w-100" %}</div>
+            </div>
+        </div>
+    </header>
+</div>
+
+{% for block in page.body %}
+    {% include_block block %}
+{% endfor %}
+
+{% include "home/includes/footer.html" %}
 
 {% endblock content %}
