@@ -14,16 +14,19 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgres://wagtail:changeme@db/pmvd
       PYTHONPATH: /app:$PYTHONPATH
+      DB_HOST: db
+      DB_NAME: wagtail
+      DB_USERNAME: wagtail
+      DB_PASSWORD: changeme
     depends_on:
       - db
 
   db:
     image: postgres:12.3-alpine
     environment:
-      POSTGRES_USER: wagtail
       POSTGRES_DB: wagtail
+      POSTGRES_USER: wagtail
       POSTGRES_PASSWORD: changeme
     volumes:
       - postgres-data:/var/lib/postgresql/data
