@@ -1,3 +1,14 @@
+// Add custom styles here.
+// This file is included after Bootstrap.
+
+html {
+  background-color: red;
+
+  div {
+    border: 2px solid rgba(green, 0.5);
+  }
+}
+
 .bg-section {
   background-color: #fff;
 }
