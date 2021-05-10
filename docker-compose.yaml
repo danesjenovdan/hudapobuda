@@ -27,7 +27,7 @@ services:
     working_dir: /app
     command: npm run watch
     volumes:
-      - ./sass-compile:/app:delegated,rw
+      - ./sass-compile/scss:/app/scss:delegated,rw
       - ./hudapobuda/hudapobuda/static:/app/static:delegated,rw
     depends_on:
       - db
