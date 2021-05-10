@@ -2,11 +2,6 @@
 // This file is included after Bootstrap.
 
 html {
-  background-color: red;
-
-  div {
-    border: 2px solid rgba(green, 0.5);
-  }
 }
 
 .bg-section {
@@ -25,6 +20,10 @@ html {
   background-color: #f4b7d1;
 }
 
+.headline h2 {
+  font-weight: 400;
+}
+
 .custom-badge {
   position: absolute;
   top: -75px;
@@ -34,10 +33,14 @@ html {
 .scrolling-banner {
   background-color: #000;
   overflow: hidden;
+  padding: 1rem 0;
 }
 
 .scrolling-banner span {
   color: #f4b7d1;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-style: italic;
   white-space: nowrap;
 }
 
