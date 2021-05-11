@@ -1,8 +1,18 @@
-<div class="footer">
+{% load static wagtailcore_tags %}
+
+<div class="footer bg-white pt-5 pb-3">
     <footer class="container">
         <div class="row">
-            <div class="col">FOOTER</div>
-            <div class="col">FOOTER</div>
+            <div class="d-flex justify-content-between align-items-center flex-column flex-md-row text-center text-md-start">
+                <div class="left-side mb-4 mb-md-0">
+                    <img class="img-fluid mb-2" src="{% static 'images/logo-djnd.png' %}">
+                    <p>Za pomoč se obrnite na imemejla@djnd.si</p>
+                </div>
+                <div class="right-side">
+                    <img class="img-fluid mb-4" src="{% static 'images/logo-mju.png' %}">
+                    <p>Aktivnost sofinancira Ministrstvo za javno upravo v okviru javnega razpisa za razvoj in profesionalizacijo NVO in prostovoljstva 2019.</p>
+                </div>
+            </div>
         </div>
     </footer>
 </div>
