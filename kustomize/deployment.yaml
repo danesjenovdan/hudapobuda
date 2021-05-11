@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hudapobuda-deployment
+  labels:
+    app: hudapobuda
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hudapobuda
+  template:
+    metadata:
+      labels:
+        app: hudapobuda
+    spec:
+      securityContext:
+        fsGroup: 1000
+      volumes:
+        - name: hudapobuda-persistent-storage
+          persistentVolumeClaim:
+            claimName: hudapobuda-pvc
+      initContainers:
+        - name: collectstatic
+          image: hudapobuda
+          volumeMounts:
+            - name: hudapobuda-persistent-storage
+              mountPath: /pvc
+          command:
+            - python
+            - manage.py
+            - collectstatic
+            - --no-input
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: hudapobuda.settings.production
+          envFrom:
+            - secretRef:
+                name: hudapobuda-credentials
+        - name: migrate
+          image: hudapobuda
+          command:
+            - python
+            - manage.py
+            - migrate
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: hudapobuda.settings.production
+          envFrom:
+            - secretRef:
+                name: hudapobuda-credentials
+      containers:
+        - name: hudapobuda
+          image: hudapobuda
+          volumeMounts:
+            - name: hudapobuda-persistent-storage
+              mountPath: /pvc
+          command:
+            - gunicorn
+            - hudapobuda.wsgi:application
+            - -b
+            - 0.0.0.0:8000
+            - --log-level
+            - DEBUG
+          ports:
+            - containerPort: 8000
+          envFrom:
+              - secretRef:
+                  name: hudapobuda-credentials
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: hudapobuda.settings.production
+        - name: hudapobuda-nginx
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          image: nginx:alpine
+          volumeMounts:
+            - name: hudapobuda-persistent-storage
+              mountPath: /usr/share/nginx/html

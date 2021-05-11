@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hudapobuda
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+spec:
+  tls:
+    - hosts:
+        - hudapobuda.lb.djnd.si
+      secretName: hudapobuda-tls
+  rules:
+    - host: hudapobuda.lb.djnd.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hudapobuda
+                port:
+                  number: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hudapobuda-nginx
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*" # TODO
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+spec:
+  tls:
+    - hosts:
+        - files.hudapobuda.lb.djnd.si
+      secretName: hudapobuda-nginx-tls
+  rules:
+    - host: files.hudapobuda.lb.djnd.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hudapobuda-nginx
+                port:
+                  number: 80
