@@ -69,6 +69,42 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/rich_text.html',
         icon='pilcrow',
     )
+    share = blocks.StructBlock(
+        [
+            ('title', blocks.CharBlock(label=_('Naslov'))),
+            ('facebook', blocks.URLBlock(label=_('Facebook'))),
+            ('twitter', blocks.URLBlock(label=_('Twitter'))),
+            ('mail', blocks.EmailBlock(label=_('Mail'))),
+        ],
+        label=_('Deli'),
+        template='home/blocks/share.html',
+        icon='title',
+    )
+    newsletter = blocks.StructBlock(
+        [
+            ('title', blocks.CharBlock(label=_('Naslov'))),
+            ('description', blocks.CharBlock(label=_('Opis'))),
+        ],
+        label=_('Newsletter'),
+        template='home/blocks/newsletter.html',
+        icon='title',
+    )
+    triple_cards  = blocks.StructBlock(
+         [
+             ('title1', blocks.CharBlock(label=_('Naslov 1'))),
+             ('description1', blocks.CharBlock(required=False, label=_('Opis 1'))),
+             ('image1', ImageChooserBlock(label=_('Ikona 1'))),
+             ('title2', blocks.CharBlock(label=_('Naslov 2'))),
+             ('description2', blocks.CharBlock(required=False, label=_('Opis 2'))),
+             ('image2', ImageChooserBlock(label=_('Ikona 2'))),
+             ('title3', blocks.CharBlock(label=_('Naslov 3'))),
+             ('description3', blocks.CharBlock(required=False, label=_('Opis 3'))),
+             ('image3', ImageChooserBlock(label=_('Ikona 3'))),
+         ],
+         label=_('Tri kartice'),
+         template='home/blocks/triple_cards.html',
+         icon='title',
+     )
 
     class Meta:
         label = _('Vsebina')
