@@ -69,6 +69,17 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/rich_text.html',
         icon='pilcrow',
     )
+    share = blocks.StructBlock(
+        [
+            ('title', blocks.CharBlock(label=_('Naslov'))),
+            ('facebook', blocks.URLBlock(label=_('Facebook'))),
+            ('twitter', blocks.URLBlock(label=_('Twitter'))),
+            ('mail', blocks.EmailBlock(label=_('Mail'))),
+        ],
+        label=_('Deli'),
+        template='home/blocks/share.html',
+        icon='title',
+    )
 
     class Meta:
         label = _('Vsebina')
