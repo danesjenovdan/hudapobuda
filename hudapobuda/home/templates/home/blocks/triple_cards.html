@@ -1,0 +1,26 @@
+{% load wagtailimages_tags %}
+
+<div class="triple-cards d-flex flex-column flex-md-row">
+    <div class="box my-3 mx-2 mx-lg-4 p-4 d-flex flex-column">
+        <div class="icon-bg mb-3">{% image value.image1 max-60x60 %}</div>
+        <h2 class="mb-3">{{ value.title1}}</h2>
+        {% if value.description1 %}
+        <p>{{ value.description1 }}</p>
+        {% endif %}
+    </div>
+    <div class="box my-3 mx-2 mx-lg-4 p-4 d-flex flex-column">
+        <div class="icon-bg mb-3">{% image value.image2 max-60x60 %}</div>
+        <h2 class="mb-3">{{ value.title2 }}</h2>
+        {% if value.description2 %}
+        <p>{{ value.description2 }}</p>
+        {% endif %}
+    </div>
+    <div class="box my-3 mx-2 mx-lg-4 p-4 d-flex flex-column">
+        <div class="icon-bg mb-3">{% image value.image3 max-60x60 %}</div>
+        <h2 class="mb-3">{{ value.title3 }}</h2>
+        {% if value.description3 %}
+        <p>{{ value.description3 }}</p>
+        {% endif %}
+    </div>
+</div>
+
