@@ -80,6 +80,15 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/share.html',
         icon='title',
     )
+    newsletter = blocks.StructBlock(
+        [
+            ('title', blocks.CharBlock(label=_('Naslov'))),
+            ('description', blocks.CharBlock(label=_('Opis'))),
+        ],
+        label=_('Newsletter'),
+        template='home/blocks/newsletter.html',
+        icon='title',
+    )
 
     class Meta:
         label = _('Vsebina')

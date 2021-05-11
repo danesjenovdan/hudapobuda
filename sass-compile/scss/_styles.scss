@@ -6,6 +6,10 @@ $yellow: #fff7b0;
 $pink: #f4b7d1;
 $light: #fffdef;
 
+h4 {
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+}
 
 .bg-section {
   background-color: #fffdef;
@@ -100,6 +104,9 @@ $light: #fffdef;
 }
 
 .share {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
   .share-box {
     display: block;
     border: 2px solid #000;
@@ -122,6 +129,17 @@ $light: #fffdef;
         width: 4rem;
       }
     }
+  }
+}
+
+.newsletter {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
+  button {
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
   }
 }
 
