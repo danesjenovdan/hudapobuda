@@ -128,6 +128,15 @@ class ContentBlock(blocks.StreamBlock):
          template='home/blocks/button_banner.html',
          icon='title',
      )
+    list = blocks.StructBlock(
+        [
+          ('title', blocks.CharBlock(label=_('Naslov'))),
+          ('list', blocks.ListBlock(blocks.CharBlock(label=_('Element')))),
+        ],
+        label=_('Seznam'),
+        template='home/blocks/list.html',
+        icon='title',
+    )
 
     class Meta:
         label = _('Vsebina')

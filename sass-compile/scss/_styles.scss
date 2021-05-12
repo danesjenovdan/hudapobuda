@@ -6,9 +6,13 @@ $yellow: #fff7b0;
 $pink: #f4b7d1;
 $light: #fffdef;
 
-h4 {
-  font-family: $font-family-sans-serif;
-  font-weight: 400;
+.hero,
+.header,
+.newsletter {
+  h4 {
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+  }
 }
 
 .bg-section {
@@ -121,6 +125,25 @@ h4 {
   border: 2px solid #000;
 }
 
+.list {
+  @media (min-width: 992px) {
+    width: 75%;
+
+    &> div {
+      width: 50%;
+    }
+  }
+
+  hr {
+    height: 2px;
+    opacity: 1;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+}
+
 .double-cards .box {
   div {
     min-width: 33%;
@@ -180,7 +203,7 @@ h4 {
 .button-banner {
   a {
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     padding: 0.5rem 1rem;
   }
 }
