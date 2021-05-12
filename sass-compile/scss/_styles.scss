@@ -8,10 +8,16 @@ $light: #fffdef;
 
 .hero,
 .header,
+.headline,
 .newsletter {
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
   h4 {
     font-family: $font-family-sans-serif;
     font-weight: 400;
+    line-height: 1.5;
   }
 }
 
@@ -111,14 +117,40 @@ $light: #fffdef;
 }
 
 .rich-text {
-  p {
-    font-size: 1.25rem;
+  h2, h3, h4 {
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
   }
+  p, ul {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+  }
+  li {
+    margin: 0;
+    padding: 0.75rem 0 0.75rem 5rem;
+    list-style: none;
+    background-image: url('../images/wavy-line.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 4rem;
+  }
+  a {
+    font-weight: 700;
+  }
+
 }
 
 .table th,
 .table td {
-  border: 1px solid #000;
+  border: 2px solid #000;
+  font-size: 1.25rem;
+  padding: 1rem;
+
+}
+
+.table {
+  table-layout: fixed;
 }
 
 .box {
