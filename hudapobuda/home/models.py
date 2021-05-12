@@ -6,9 +6,8 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core import blocks
 
-from .blocks import SectionBlock, PageLinkBlock, ExternalLinkBlock
+from .blocks import ExternalLinkBlock, PageLinkBlock, SectionBlock
 
 
 @register_setting(icon='cog')
