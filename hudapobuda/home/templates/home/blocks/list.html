@@ -1,0 +1,14 @@
+<div class="col-12 my-4">
+    <div class="d-flex justify-content-center">
+        <div class="text-center list">
+            <p class="fw-bold mb-4">{{ value.title }}</p>
+            <div class="mx-auto">
+                <hr/>
+                {% for el in value.list %}
+                <p>{{ el }}</p>
+                <hr/>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

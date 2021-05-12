@@ -6,13 +6,25 @@ $yellow: #fff7b0;
 $pink: #f4b7d1;
 $light: #fffdef;
 
-h4 {
-  font-family: $font-family-sans-serif;
-  font-weight: 400;
+.hero,
+.header,
+.headline,
+.newsletter {
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  h4 {
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+  }
 }
 
 .bg-section {
   background-color: #fffdef;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .bg-section--blue {
@@ -42,6 +54,12 @@ h4 {
   &:hover {
     background-color: $blue;
     color: #000;
+  }
+}
+
+.hero {
+  h4 {
+    line-height: 1.5;
   }
 }
 
@@ -98,19 +116,78 @@ h4 {
   white-space: nowrap;
 }
 
-.table th,
-.table td {
-  border: 1px solid #000;
+.rich-text {
+  h2, h3, h4 {
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  p, ul {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+  }
+  li {
+    margin: 0;
+    padding: 0.75rem 0 0.75rem 5rem;
+    list-style: none;
+    background-image: url('../images/wavy-line.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 4rem;
+  }
+  a {
+    font-weight: 700;
+  }
+
 }
 
-.triple-cards {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+.table th,
+.table td {
+  border: 2px solid #000;
+  font-size: 1.25rem;
+  padding: 1rem;
+
+}
+
+.table {
+  table-layout: fixed;
 }
 
 .box {
-  flex: 1 1 0;
   border: 2px solid #000;
+}
+
+.list {
+  @media (min-width: 992px) {
+    width: 75%;
+
+    &> div {
+      width: 50%;
+    }
+  }
+
+  hr {
+    height: 2px;
+    opacity: 1;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+}
+
+.double-cards .box {
+  div {
+    min-width: 33%;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+}
+
+.triple-cards .box {
+  flex: 1 1 0;
 
   .icon-bg {
     background-color: white;
@@ -130,9 +207,6 @@ h4 {
 }
 
 .share {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-
   .share-box {
     display: block;
     border: 2px solid #000;
@@ -158,10 +232,15 @@ h4 {
   }
 }
 
-.newsletter {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+.button-banner {
+  a {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+  }
+}
 
+.newsletter {
   button {
     font-weight: bold;
     font-size: 1.25rem;

@@ -1,11 +1,7 @@
-{% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% extends "home/base_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}page page--home{% endblock %}
-
-{% block extra_css %}
-
-{% endblock extra_css %}
 
 {% block content %}
 
@@ -13,13 +9,13 @@
 
 <div class="bg-section bg-section--white">
     <header class="container">
-        <div class="row">
-            <div class="col-5">
-                <h1>{{ page.title }}</h1>
-                <h2>{{ page.subtitle }}</h2>
+        <div class="row hero align-items-center">
+            <div class="col-12 col-lg-5 text-center text-lg-start">
+                <h1 class="mb-3">{{ page.title }}</h1>
+                <h4>{{ page.subtitle }}</h4>
             </div>
-            <div class="col-7">
-                <div>{% image page.image width-820 class="img-fluid w-100" %}</div>
+            <div class="col-12 col-lg-7">
+                <div>{% image page.image width-820 class="img-fluid w-100 p-4" %}</div>
             </div>
         </div>
     </header>

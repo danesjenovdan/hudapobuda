@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+<div class="button-banner text-center my-3">
+    <a href="{% if value.url %}{{ value.url }}{% elif value.page %}{% pageurl value.page %}{% endif %}" class="btn btn-primary btn-outline-dark">
+        {% if value.text %}
+            {{ value.text }}
+        {% elif value.page %}
+            {{ value.page.title }}
+        {% endif %}
+    </a>
+</div>
