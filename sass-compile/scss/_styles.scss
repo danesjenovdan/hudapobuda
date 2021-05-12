@@ -57,6 +57,40 @@ $light: #fffdef;
   }
 }
 
+.checkbox-wrapper {
+  position: relative;
+  cursor: pointer;
+  margin: 1.5rem 0 1.5rem 2.5rem;
+
+  input {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  span {
+    line-height: 2rem;
+  }
+
+  span:after {
+    content: "";
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    border: 2px solid black;
+    height: 2rem;
+    width: 2rem;
+    background-color: transparent;
+  }
+
+  input:checked + span:after {
+    background-image: url("../images/check.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+  }
+
+}
+
 .hero {
   h4 {
     line-height: 1.5;
