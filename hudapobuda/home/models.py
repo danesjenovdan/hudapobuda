@@ -1,14 +1,17 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.edit_handlers import (FieldPanel, ObjectList,
+from modelcluster.fields import ParentalKey
+from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel, ObjectList,
                                          StreamFieldPanel, TabbedInterface)
+from wagtail.contrib.forms.edit_handlers import FormSubmissionsPanel
+from wagtail.contrib.forms.models import AbstractForm, AbstractFormField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core import blocks
 
-from .blocks import SectionBlock, PageLinkBlock, ExternalLinkBlock
+from .blocks import (ExternalLinkBlock, FormSectionBlock, PageLinkBlock,
+                     SectionBlock)
 
 
 @register_setting(icon='cog')
@@ -124,4 +127,28 @@ class ContentPage(Page):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
+    ]
+
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+
+
+class FormPage(AbstractForm):
+    body = StreamField(
+        [('section', FormSectionBlock())],
+        verbose_name=_('Vsebina'),
+        default='',
+    )
+    landing_body = StreamField(
+        [('section', SectionBlock())],
+        verbose_name=_('Vsebina po oddaji obrazca'),
+        default='',
+    )
+
+    content_panels = AbstractForm.content_panels + [
+        StreamFieldPanel('body'),
+        FormSubmissionsPanel(),
+        InlinePanel('form_fields', label=_('Polja obrazca')),
+        StreamFieldPanel('landing_body'),
     ]

@@ -1,7 +1,8 @@
 from django.utils.translation import gettext_lazy as _
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.contrib.table_block.blocks import TableBlock
+
 
 class ExternalLinkBlock(blocks.StructBlock):
     style = blocks.ChoiceBlock(
@@ -111,6 +112,15 @@ class ContentBlock(blocks.StreamBlock):
         icon = 'snippet'
 
 
+class FormContentBlock(ContentBlock):
+    form = blocks.StaticBlock(
+        admin_text='Tukaj se bo vstavil obrazec, ki se ga lahko ureja spodaj.',
+        label=_('Obrazec'),
+        template='home/blocks/form.html',
+        icon='form',
+    )
+
+
 class ColorSectionBlock(blocks.StructBlock):
     color = blocks.ChoiceBlock(
         choices=[
@@ -129,6 +139,10 @@ class ColorSectionBlock(blocks.StructBlock):
         icon = 'snippet'
 
 
+class FormColorSectionBlock(ColorSectionBlock):
+    body = FormContentBlock()
+
+
 class SectionBlock(blocks.StreamBlock):
     color_section = ColorSectionBlock()
     scrolling_banner = blocks.StructBlock(
@@ -142,3 +156,7 @@ class SectionBlock(blocks.StreamBlock):
         label = _('Vsebinski odsek')
         template = 'home/blocks/section.html'
         icon = 'snippet'
+
+
+class FormSectionBlock(SectionBlock):
+    color_section = FormColorSectionBlock()

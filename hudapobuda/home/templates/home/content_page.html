@@ -1,20 +1,3 @@
-{% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% extends "home/base_page.html" %}
 
 {% block body_class %}page page--content{% endblock %}
-
-{% block extra_css %}
-
-{% endblock extra_css %}
-
-{% block content %}
-
-{% include "home/includes/header.html" with show_logo=True %}
-
-{% for block in page.body %}
-    {% include_block block %}
-{% endfor %}
-
-{% include "home/includes/footer.html" %}
-
-{% endblock content %}
