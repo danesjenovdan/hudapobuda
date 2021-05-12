@@ -89,6 +89,17 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/newsletter.html',
         icon='title',
     )
+    double_cards  = blocks.StructBlock(
+         [
+             ('text1', blocks.CharBlock(label=_('Besedilo 1'))),
+             ('image1', ImageChooserBlock(label=_('Ikona 1'))),
+             ('text2', blocks.CharBlock(label=_('Besedilo 2'))),
+             ('image2', ImageChooserBlock(label=_('Ikona 2'))),
+         ],
+         label=_('Dve kartici'),
+         template='home/blocks/double_cards.html',
+         icon='title',
+    )
     triple_cards  = blocks.StructBlock(
          [
              ('title_big1', blocks.CharBlock(required=False, label=_('Naslov - velik 1'))),
