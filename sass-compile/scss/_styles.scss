@@ -11,7 +11,8 @@ $light: #fffdef;
 .headline,
 .newsletter {
   h1 {
-    font-size: 3rem;
+    // font-size: 3rem;
+    font-size: calc(1.75rem + 1.5vw);
     margin-bottom: 1.5rem;
   }
   h4 {
