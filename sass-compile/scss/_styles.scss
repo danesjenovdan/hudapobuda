@@ -13,6 +13,8 @@ h4 {
 
 .bg-section {
   background-color: #fffdef;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .bg-section--blue {
@@ -42,6 +44,12 @@ h4 {
   &:hover {
     background-color: $blue;
     color: #000;
+  }
+}
+
+.hero {
+  h4 {
+    line-height: 1.5;
   }
 }
 
@@ -98,14 +106,15 @@ h4 {
   white-space: nowrap;
 }
 
+.rich-text {
+  p {
+    font-size: 1.25rem;
+  }
+}
+
 .table th,
 .table td {
   border: 1px solid #000;
-}
-
-.triple-cards {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
 }
 
 .box {
@@ -130,9 +139,6 @@ h4 {
 }
 
 .share {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-
   .share-box {
     display: block;
     border: 2px solid #000;
@@ -159,13 +165,6 @@ h4 {
 }
 
 .button-banner {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-
-  p {
-    font-size: 1.25rem;
-  }
-
   a {
     font-weight: bold;
     font-size: 1.25rem;
@@ -174,9 +173,6 @@ h4 {
 }
 
 .newsletter {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-
   button {
     font-weight: bold;
     font-size: 1.25rem;
