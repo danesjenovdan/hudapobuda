@@ -76,7 +76,7 @@ class ContentBlock(blocks.StreamBlock):
             ('twitter', blocks.URLBlock(label=_('Twitter'))),
             ('mail', blocks.EmailBlock(label=_('Mail'))),
         ],
-        label=_('Deli'),
+        label=_('Gumbi za deljenje'),
         template='home/blocks/share.html',
         icon='title',
     )
@@ -104,7 +104,16 @@ class ContentBlock(blocks.StreamBlock):
          label=_('Tri kartice'),
          template='home/blocks/triple_cards.html',
          icon='title',
-     )
+    )
+    triple_cards  = blocks.StructBlock(
+             [
+                 ('title', blocks.CharBlock(label=_('Naslov'))),
+                 ('description', blocks.CharBlock(required=False, label=_('Opis'))),
+             ],
+             label=_('Sekcija s sredinsko poravnavo in gumbom za prijavo'),
+             template='home/blocks/button_banner.html',
+             icon='title',
+         )
 
     class Meta:
         label = _('Vsebina')
