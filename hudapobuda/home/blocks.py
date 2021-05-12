@@ -122,8 +122,20 @@ class ContentBlock(blocks.StreamBlock):
     )
     button_banner = blocks.StructBlock(
         [
-            ('url', blocks.CharBlock(label=_('URL podstrani'))),
-            ('text', blocks.CharBlock(label=_('Tekst na gumbu'))),
+            ('text', blocks.CharBlock(
+                required=False,
+                label=_('Besedilo'),
+                help_text=_('Če je prazno se uporabi naslov strani (pri zunanji povezavi pa je obvezno).'),
+            )),
+            ('page', blocks.PageChooserBlock(
+                required=False,
+                label=_('Povezava do strani'),
+            )),
+            ('url', blocks.URLBlock(
+                required=False,
+                label=_('Zunanja povezava'),
+                help_text=_('Če je prazno se uporabi povezava do strani.'),
+            )),
         ],
         label=_('Gumb za preusmeritev'),
         template='home/blocks/button_banner.html',
