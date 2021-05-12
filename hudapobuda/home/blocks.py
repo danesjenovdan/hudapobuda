@@ -76,7 +76,7 @@ class ContentBlock(blocks.StreamBlock):
             ('twitter', blocks.URLBlock(label=_('Twitter'))),
             ('mail', blocks.EmailBlock(label=_('Mail'))),
         ],
-        label=_('Deli'),
+        label=_('Gumbi za deljenje'),
         template='home/blocks/share.html',
         icon='title',
     )
@@ -89,22 +89,54 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/newsletter.html',
         icon='title',
     )
+    double_cards  = blocks.StructBlock(
+         [
+             ('text1', blocks.CharBlock(label=_('Besedilo 1'))),
+             ('image1', ImageChooserBlock(label=_('Ikona 1'))),
+             ('text2', blocks.CharBlock(label=_('Besedilo 2'))),
+             ('image2', ImageChooserBlock(label=_('Ikona 2'))),
+         ],
+         label=_('Dve kartici'),
+         template='home/blocks/double_cards.html',
+         icon='title',
+    )
     triple_cards  = blocks.StructBlock(
          [
-             ('title1', blocks.CharBlock(label=_('Naslov 1'))),
+             ('title_big1', blocks.CharBlock(required=False, label=_('Naslov - velik 1'))),
+             ('title_small1', blocks.CharBlock(required=False, label=_('Naslov - mali 1'))),
              ('description1', blocks.CharBlock(required=False, label=_('Opis 1'))),
              ('image1', ImageChooserBlock(label=_('Ikona 1'))),
-             ('title2', blocks.CharBlock(label=_('Naslov 2'))),
+             ('title_big2', blocks.CharBlock(required=False, label=_('Naslov - velik 2'))),
+             ('title_small2', blocks.CharBlock(required=False, label=_('Naslov - mali 2'))),
              ('description2', blocks.CharBlock(required=False, label=_('Opis 2'))),
              ('image2', ImageChooserBlock(label=_('Ikona 2'))),
-             ('title3', blocks.CharBlock(label=_('Naslov 3'))),
+             ('title_big3', blocks.CharBlock(required=False, label=_('Naslov - velik 3'))),
+             ('title_small3', blocks.CharBlock(required=False, label=_('Naslov - mali 3'))),
              ('description3', blocks.CharBlock(required=False, label=_('Opis 3'))),
              ('image3', ImageChooserBlock(label=_('Ikona 3'))),
          ],
          label=_('Tri kartice'),
          template='home/blocks/triple_cards.html',
          icon='title',
+    )
+    button_banner = blocks.StructBlock(
+         [
+             ('url', blocks.CharBlock(label=_('URL podstrani'))),
+             ('text', blocks.CharBlock(label=_('Tekst na gumbu'))),
+         ],
+         label=_('Gumb za preusmeritev'),
+         template='home/blocks/button_banner.html',
+         icon='title',
      )
+    list = blocks.StructBlock(
+        [
+          ('title', blocks.CharBlock(label=_('Naslov'))),
+          ('list', blocks.ListBlock(blocks.CharBlock(label=_('Element')))),
+        ],
+        label=_('Seznam'),
+        template='home/blocks/list.html',
+        icon='title',
+    )
 
     class Meta:
         label = _('Vsebina')

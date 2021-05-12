@@ -1,13 +1,13 @@
 {% load wagtailimages_tags %}
 
-<div class="headline d-flex align-items-center my-5 {% if value.image %}col-12 col-lg-7{% else %}col text-center justify-content-center{% endif %}">
-    <div>
+<div class="headline d-flex align-items-center my-3 {% if value.image %}col-12 col-lg-7{% else %}col text-center justify-content-center{% endif %}">
+    <div class="p-0 px-lg-4">
         <h1 class="text-uppercase">{{ value.title }}</h1>
-        {% if value.description %}<h2>{{ value.description }}</h2>{% endif %}
+        {% if value.description %}<h4>{{ value.description }}</h4>{% endif %}
     </div>
 </div>
 {% if value.image %}
 <div class="col-12 col-lg-5 d-flex align-items-center">
-    <div class="mb-5 my-lg-4 w-100">{% image value.image width-640 class="img-fluid w-100" %}</div>
+    <div class="w-100">{% image value.image width-640 class="img-fluid w-100" %}</div>
 </div>
 {% endif %}
