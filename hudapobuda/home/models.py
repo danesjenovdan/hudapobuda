@@ -175,7 +175,7 @@ class FormPage(AbstractForm):
                 field.widget.attrs.pop('cols', None)
                 field.widget.attrs.update({'rows': '5'})
 
-            if isinstance(field.widget, (widgets.CheckboxInput, widgets.CheckboxSelectMultiple)):
+            if isinstance(field.widget, (widgets.CheckboxInput, widgets.CheckboxSelectMultiple, widgets.RadioSelect)):
                 css_classes = field.widget.attrs.get('class', '').split()
                 css_classes.append('form-check-input')
                 field.widget.attrs.update({'class': ' '.join(css_classes)})

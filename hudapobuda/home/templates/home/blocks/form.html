@@ -14,6 +14,8 @@
                     {% include 'home/form/checkboxinput.html' %}
                 {% elif field.field.widget.widget_type == 'CheckboxSelectMultiple' %}
                     {% include 'home/form/checkboxselectmultiple.html' %}
+                {% elif field.field.widget.widget_type == 'RadioSelect' %}
+                    {% include 'home/form/radioselect.html' %}
                 {% else %}
                     <div>TODO: ({{ field.field.widget.widget_type }})</div>
                 {% endif %}
