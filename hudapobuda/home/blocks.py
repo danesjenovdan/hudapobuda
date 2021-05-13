@@ -51,6 +51,21 @@ class ContentBlock(blocks.StreamBlock):
         [
             ('line_one', blocks.CharBlock(required=False, label=_('Prva vrstica'))),
             ('line_two', blocks.CharBlock(required=False, label=_('Druga vrstica'))),
+            ('color', blocks.ChoiceBlock(
+                choices=[
+                    ('white', 'Bela'),
+                    ('blue', 'Modra'),
+                ],
+                label=_('Barva'))
+            ),
+            ('position', blocks.ChoiceBlock(
+                choices=[
+                    ('left', 'Leva'),
+                    ('center', 'Sredinska'),
+                    ('right', 'Desna'),
+                ],
+                label=_('Poravnava'))
+            ),
         ],
         label=_('Značka'),
         template='home/blocks/badge.html',

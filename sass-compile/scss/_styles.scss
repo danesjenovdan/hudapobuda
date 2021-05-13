@@ -141,8 +141,41 @@ $light: #fffdef;
 
 .custom-badge {
   position: absolute;
-  top: -75px;
-  background-color: $yellow;
+  padding: 3rem 2rem;
+  min-width: 220px;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &.white {
+    background-image: url('../images/blob1.svg');
+  }
+  &.blue {
+    background-image: url('../images/blob2.svg');
+  }
+
+  &.left {
+    left: 0;
+  }
+  &.center {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &.right {
+    right: 0;
+  }
+
+  .content {
+    transform: rotate(-15deg);
+    span {
+      font-size: 1.5rem;
+    }
+    span:first-child {
+      font-family: $headings-font-family;
+    }
+    span:nth-child(2) {
+      font-weight: 700;
+    }
+  }
 }
 
 .scrolling-banner {
