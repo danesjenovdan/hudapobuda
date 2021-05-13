@@ -166,6 +166,18 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/list.html',
         icon='title',
     )
+    qa_table = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('question', blocks.CharBlock(label=_('Vprašanje'))),
+                ('answer', blocks.RichTextBlock(label=_('Odgovor'))),
+            ],
+            label=_('Vrstica'),
+        ),
+        label=_('Tabela z vprašanji in odgovori'),
+        template='home/blocks/qa_table.html',
+        icon='title',
+    )
 
     class Meta:
         label = _('Vsebina')
