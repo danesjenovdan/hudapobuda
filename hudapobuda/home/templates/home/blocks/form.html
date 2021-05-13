@@ -3,7 +3,35 @@
 <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2 rich-text mb-5">
     <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit">
+
+        {% for field in form.visible_fields %}
+            <div class="mb-3">
+                {% if field.field.widget.widget_type == 'TextInput' %}
+                    {% include 'home/form/textinput.html' %}
+                {% elif field.field.widget.widget_type == 'Textarea' %}
+                    {% include 'home/form/textarea.html' %}
+                {% elif field.field.widget.widget_type == 'CheckboxInput' %}
+                    {% include 'home/form/checkboxinput.html' %}
+                {% elif field.field.widget.widget_type == 'CheckboxSelectMultiple' %}
+                    {% include 'home/form/checkboxselectmultiple.html' %}
+                {% else %}
+                    <div>TODO: ({{ field.field.widget.widget_type }})</div>
+                {% endif %}
+
+                {% for error in field.errors %}
+                    <div class="form-text text-danger">{{ error }}</div>
+                {% endfor %}
+
+                {% if field.help_text %}
+                    <div class="form-text">{{ field.help_text }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        {% for field in form.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

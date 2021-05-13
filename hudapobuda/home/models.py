@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import widgets
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel, ObjectList,
@@ -152,3 +153,34 @@ class FormPage(AbstractForm):
         InlinePanel('form_fields', label=_('Polja obrazca')),
         StreamFieldPanel('landing_body'),
     ]
+
+    def get_form(self, *args, **kwargs):
+        form = super().get_form(*args, **kwargs)
+
+        for name, field in form.fields.items():
+            # add type to widget for template to access
+            setattr(field.widget, 'widget_type', field.widget.__class__.__name__)
+
+            if form.is_bound and form.errors.get(name, None):
+                css_classes = field.widget.attrs.get('class', '').split()
+                css_classes.append('is-invalid')
+                field.widget.attrs.update({'class': ' '.join(css_classes)})
+
+            if isinstance(field.widget, (widgets.TextInput, widgets.Textarea)):
+                css_classes = field.widget.attrs.get('class', '').split()
+                css_classes.append('form-control')
+                field.widget.attrs.update({'class': ' '.join(css_classes)})
+
+            if isinstance(field.widget, widgets.Textarea):
+                field.widget.attrs.pop('cols', None)
+                field.widget.attrs.update({'rows': '5'})
+
+            if isinstance(field.widget, (widgets.CheckboxInput, widgets.CheckboxSelectMultiple)):
+                css_classes = field.widget.attrs.get('class', '').split()
+                css_classes.append('form-check-input')
+                field.widget.attrs.update({'class': ' '.join(css_classes)})
+
+        return form
+
+    # TODO: override this and call super, form is already valid here, so just call email or whatever after
+    # def process_form_submission
