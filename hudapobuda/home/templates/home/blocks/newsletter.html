@@ -3,12 +3,16 @@
         <h1 class="text-uppercase">{{ value.title }}</h1>
         <h4 class="">{{ value.description }}</h4>
     </div>
-    <div class="col-12 col-md-10 col-lg-6 text-center">
+    <div class="col-12 col-md-10 col-lg-6">
         <form class="my-4">
-            <div class="input-group">
+            <div class="input-group text-center">
                 <input type="text" class="form-control">
                 <button class="btn btn-primary btn-outline-dark" type="button">Prijavi se</button>
             </div>
+            <label for="confirm-email" class="checkbox-wrapper text-start">
+                <input type="checkbox" id="confirm-email">
+                <span>Strinjam se, da mi pošljete občasni email.</span>
+            </label>
         </form>
     </div>
 </div>
