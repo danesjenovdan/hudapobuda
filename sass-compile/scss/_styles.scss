@@ -226,6 +226,10 @@ $light: #fffdef;
 .double-cards .box {
   div {
     min-width: 33%;
+
+    img {
+      max-width: 200px;
+    }
   }
 
   p {
