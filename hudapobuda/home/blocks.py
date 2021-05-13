@@ -40,7 +40,7 @@ class ContentBlock(blocks.StreamBlock):
     headline = blocks.StructBlock(
         [
             ('title', blocks.CharBlock(label=_('Naslov'))),
-            ('description', blocks.TextBlock(required=False, label=_('Opis'))),
+            ('description', blocks.RichTextBlock(required=False, label=_('Opis'))),
             ('image', ImageChooserBlock(required=False, label=_('Slika'))),
         ],
         label=_('Naslov'),
@@ -71,14 +71,27 @@ class ContentBlock(blocks.StreamBlock):
         template='home/blocks/badge.html',
         icon='pick',
     )
-    rich_text = blocks.StreamBlock(
+    rich_text = blocks.StructBlock(
         [
-            ('text', blocks.RichTextBlock(
-                label=_('Besedilo'),
+            ('position', blocks.ChoiceBlock(
+                choices=[
+                    ('left', 'Leva'),
+                    ('center', 'Sredinska'),
+                    ('right', 'Desna'),
+                ],
+                label=_('Poravnava')
             )),
-            ('table', TableBlock(
-                label=_('Tabela'),
-                template='home/blocks/table.html',
+            ('aligned_text', blocks.StreamBlock(
+                [
+                    ('text', blocks.RichTextBlock(
+                        label=_('Besedilo'),
+                    )),
+                    ('table', TableBlock(
+                        label=_('Tabela'),
+                        template='home/blocks/table.html',
+                    )),
+                ],
+                label=_('Obogateno besedilo'),
             )),
         ],
         label=_('Obogateno besedilo'),

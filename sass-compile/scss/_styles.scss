@@ -48,6 +48,12 @@ $light: #fffdef;
   &:hover {
     border-color: #000;
   }
+  &.active {
+    border-color: #000;
+  }
+  &.active.btn-primary {
+    background-color: $blue;
+  }
 }
 
 .navbar-toggler {
@@ -197,16 +203,16 @@ $light: #fffdef;
   height: 100%;
   white-space: nowrap;
   /* Apply animation to this element */
-  -moz-animation: demo-1 15s linear infinite;
-  -webkit-animation: demo-1 15s linear infinite;
-  animation: demo-1 15s linear infinite;
-  
+  -moz-animation: demo-1 20s linear infinite;
+  -webkit-animation: demo-1 20s linear infinite;
+  animation: demo-1 20s linear infinite;
+
   &:last-child {
     /* Starting position */
     -moz-transform:translateX(100%);
     -webkit-transform:translateX(100%);
     transform:translateX(100%);
-    animation-delay: 7.5s;
+    animation-delay: 10s;
   }
 
   h2 {
@@ -259,6 +265,15 @@ $light: #fffdef;
     font-weight: 700;
   }
 
+  &.left {
+    text-align: left;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
 }
 
 table th,
@@ -377,7 +392,7 @@ table td {
   a {
     font-weight: bold;
     font-size: 1.5rem;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
   }
 }
 

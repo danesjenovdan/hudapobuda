@@ -1,6 +1,6 @@
 {% load wagtailimages_tags %}
 
-<div class="headline d-flex align-items-center my-3 {% if value.image %}col-12 col-lg-7{% else %}col text-center justify-content-center{% endif %}">
+<div class="headline d-flex align-items-center text-center my-3 {% if value.image %}col-12 col-lg-7 text-lg-start{% else %}col-12 col-lg-10 offset-lg-1 justify-content-center{% endif %}">
     <div class="p-0 px-lg-4">
         <h1 class="text-uppercase">{{ value.title }}</h1>
         {% if value.description %}<h4>{{ value.description }}</h4>{% endif %}
