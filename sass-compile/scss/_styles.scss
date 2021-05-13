@@ -181,16 +181,59 @@ $light: #fffdef;
 .scrolling-banner {
   background-color: #000;
   overflow: hidden;
-  padding: 1rem 0;
+  position: relative;
+  height: 5rem;
 }
 
-.scrolling-banner span {
+.scrolling-banner > div {
   color: $pink;
   font-size: 2rem;
+  padding: 1rem;
   font-family: $headings-font-family;
   text-transform: uppercase;
   font-style: italic;
+  position: absolute;
+  min-width: 100%;
+  height: 100%;
   white-space: nowrap;
+  /* Apply animation to this element */
+  -moz-animation: demo-1 15s linear infinite;
+  -webkit-animation: demo-1 15s linear infinite;
+  animation: demo-1 15s linear infinite;
+  
+  &:last-child {
+    /* Starting position */
+    -moz-transform:translateX(100%);
+    -webkit-transform:translateX(100%);
+    transform:translateX(100%);
+    animation-delay: 7.5s;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
+/* Move it (define the animation) */
+@-moz-keyframes demo-1 {
+  0%   { -moz-transform: translateX(100%); }
+  100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes demo-1 {
+  0%   { -webkit-transform: translateX(100%); }
+  100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes demo-1 {
+  0%   {
+    -moz-transform: translateX(100%); /* Firefox bug fix */
+    -webkit-transform: translateX(100%); /* Firefox bug fix */
+    transform: translateX(100%);
+  }
+  100% {
+    -moz-transform: translateX(-100%); /* Firefox bug fix */
+    -webkit-transform: translateX(-100%); /* Firefox bug fix */
+    transform: translateX(-100%);
+  }
 }
 
 .rich-text {
