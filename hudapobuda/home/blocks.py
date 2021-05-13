@@ -85,8 +85,9 @@ class ContentBlock(blocks.StreamBlock):
         [
             ('title', blocks.CharBlock(label=_('Naslov'))),
             ('description', blocks.CharBlock(label=_('Opis'))),
+            ('checkbox_text', blocks.CharBlock(label=_('Checkbox tekst'))),
         ],
-        label=_('Newsletter'),
+        label=_('Novičnik'),
         template='home/blocks/newsletter.html',
         icon='title',
     )
