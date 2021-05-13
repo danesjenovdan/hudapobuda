@@ -1,0 +1,9 @@
+{% load wagtailcore_tags %}
+
+<div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2 rich-text mb-5">
+    <form action="{% pageurl page %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+</div>
