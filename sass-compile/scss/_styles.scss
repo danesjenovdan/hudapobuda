@@ -113,6 +113,7 @@
 
 .header {
   border-bottom: 2px solid #000;
+  z-index: $zindex-sticky;
 
   a {
     text-decoration: none;
