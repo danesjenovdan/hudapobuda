@@ -16,6 +16,8 @@
                     {% include 'home/form/checkboxselectmultiple.html' %}
                 {% elif field.field.widget.widget_type == 'RadioSelect' %}
                     {% include 'home/form/radioselect.html' %}
+                {% elif field.field.widget.widget_type == 'StaticHeading' %}
+                    {% include 'home/form/staticheading.html' %}
                 {% else %}
                     <div>TODO: ({{ field.field.widget.widget_type }})</div>
                 {% endif %}
