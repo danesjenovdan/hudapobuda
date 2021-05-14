@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 
-<div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2 rich-text">
-    {% for block in value %}
+<div class="col-12 col-lg-10 offset-lg-1 rich-text {{ value.position }}">
+    {% for block in value.aligned_text %}
         {% include_block block %}
     {% endfor %}
 </div>

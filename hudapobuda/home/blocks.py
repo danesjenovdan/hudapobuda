@@ -40,7 +40,7 @@ class ContentBlock(blocks.StreamBlock):
     headline = blocks.StructBlock(
         [
             ('title', blocks.CharBlock(label=_('Naslov'))),
-            ('description', blocks.TextBlock(required=False, label=_('Opis'))),
+            ('description', blocks.RichTextBlock(required=False, label=_('Opis'))),
             ('image', ImageChooserBlock(required=False, label=_('Slika'))),
         ],
         label=_('Naslov'),
@@ -51,19 +51,47 @@ class ContentBlock(blocks.StreamBlock):
         [
             ('line_one', blocks.CharBlock(required=False, label=_('Prva vrstica'))),
             ('line_two', blocks.CharBlock(required=False, label=_('Druga vrstica'))),
+            ('color', blocks.ChoiceBlock(
+                choices=[
+                    ('white', 'Bela'),
+                    ('blue', 'Modra'),
+                ],
+                label=_('Barva'))
+            ),
+            ('position', blocks.ChoiceBlock(
+                choices=[
+                    ('left', 'Leva'),
+                    ('center', 'Sredinska'),
+                    ('right', 'Desna'),
+                ],
+                label=_('Poravnava'))
+            ),
         ],
         label=_('Značka'),
         template='home/blocks/badge.html',
         icon='pick',
     )
-    rich_text = blocks.StreamBlock(
+    rich_text = blocks.StructBlock(
         [
-            ('text', blocks.RichTextBlock(
-                label=_('Besedilo'),
+            ('position', blocks.ChoiceBlock(
+                choices=[
+                    ('left', 'Leva'),
+                    ('center', 'Sredinska'),
+                    ('right', 'Desna'),
+                ],
+                label=_('Poravnava')
             )),
-            ('table', TableBlock(
-                label=_('Tabela'),
-                template='home/blocks/table.html',
+            ('aligned_text', blocks.StreamBlock(
+                [
+                    ('text', blocks.RichTextBlock(
+                        label=_('Besedilo'),
+                    )),
+                    ('table', TableBlock(
+                        label=_('Tabela'),
+                        template='home/blocks/table.html',
+                    )),
+                ],
+                label=_('Obogateno besedilo'),
             )),
         ],
         label=_('Obogateno besedilo'),
@@ -85,8 +113,9 @@ class ContentBlock(blocks.StreamBlock):
         [
             ('title', blocks.CharBlock(label=_('Naslov'))),
             ('description', blocks.CharBlock(label=_('Opis'))),
+            ('checkbox_text', blocks.CharBlock(label=_('Checkbox tekst'))),
         ],
-        label=_('Newsletter'),
+        label=_('Novičnik'),
         template='home/blocks/newsletter.html',
         icon='title',
     )
@@ -148,6 +177,18 @@ class ContentBlock(blocks.StreamBlock):
         ],
         label=_('Seznam'),
         template='home/blocks/list.html',
+        icon='title',
+    )
+    qa_table = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ('question', blocks.CharBlock(label=_('Vprašanje'))),
+                ('answer', blocks.RichTextBlock(label=_('Odgovor'))),
+            ],
+            label=_('Vrstica'),
+        ),
+        label=_('Tabela z vprašanji in odgovori'),
+        template='home/blocks/qa_table.html',
         icon='title',
     )
 
