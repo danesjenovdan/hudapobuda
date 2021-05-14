@@ -166,14 +166,14 @@ class FormPage(AbstractForm):
                 css_classes.append('is-invalid')
                 field.widget.attrs.update({'class': ' '.join(css_classes)})
 
-            if isinstance(field.widget, (widgets.TextInput, widgets.Textarea)):
+            if isinstance(field.widget, (widgets.TextInput, widgets.Textarea, widgets.NumberInput)):
                 css_classes = field.widget.attrs.get('class', '').split()
                 css_classes.append('form-control')
                 field.widget.attrs.update({'class': ' '.join(css_classes)})
 
             if isinstance(field.widget, widgets.Textarea):
                 field.widget.attrs.pop('cols', None)
-                field.widget.attrs.update({'rows': '5'})
+                field.widget.attrs.update({'rows': '6'})
 
             if isinstance(field.widget, (widgets.CheckboxInput, widgets.CheckboxSelectMultiple, widgets.RadioSelect)):
                 css_classes = field.widget.attrs.get('class', '').split()
