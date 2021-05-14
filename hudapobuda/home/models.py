@@ -1,6 +1,7 @@
 import sys
 
 import requests
+from django import forms
 from django.conf import settings
 from django.db import models
 from django.forms import fields, widgets
@@ -9,7 +10,9 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel, ObjectList,
                                          StreamFieldPanel, TabbedInterface)
 from wagtail.contrib.forms.edit_handlers import FormSubmissionsPanel
-from wagtail.contrib.forms.models import AbstractForm, AbstractFormField
+from wagtail.contrib.forms.forms import FormBuilder
+from wagtail.contrib.forms.models import (FORM_FIELD_CHOICES, AbstractForm,
+                                          AbstractFormField)
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
@@ -76,11 +79,16 @@ class MetaSettings(BaseSetting):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    share_email_text = models.TextField(
+        null=True,
+        blank=True,
+    )
 
     meta_tab_panels = [
         FieldPanel('meta_title'),
         FieldPanel('meta_description'),
         ImageChooserPanel('meta_image'),
+        FieldPanel('share_email_text'),
     ]
 
     edit_handler = TabbedInterface([
@@ -135,7 +143,23 @@ class ContentPage(Page):
     ]
 
 
+class StaticHeading(forms.Widget):
+    pass
+
+
+class CustomFormBuilder(FormBuilder):
+    def create_static_heading_field(self, field, options):
+        options['required'] = False
+        print(options)
+        return forms.CharField(widget=StaticHeading, **options)
+
+
 class FormField(AbstractFormField):
+    # extend the built in field type choices
+    CHOICES = FORM_FIELD_CHOICES + (('static_heading', 'Statični naslov'),)
+    # override the field_type field with extended choices
+    field_type = models.CharField(verbose_name=_('field type'), max_length=16, choices=CHOICES)
+
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
 
 
@@ -157,6 +181,8 @@ class FormPage(AbstractForm):
         InlinePanel('form_fields', label=_('Polja obrazca')),
         StreamFieldPanel('landing_body'),
     ]
+
+    form_builder = CustomFormBuilder
 
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)

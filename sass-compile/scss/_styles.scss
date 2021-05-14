@@ -75,11 +75,14 @@
 .checkbox-wrapper {
   position: relative;
   cursor: pointer;
-  margin: 1.5rem 0 1.5rem 2.5rem;
+  margin: 1rem 0 1.5rem 2.5rem;
 
   input {
     position: absolute;
-    visibility: hidden;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    transform: translate(-20px, 20px);
   }
 
   span {
@@ -453,5 +456,13 @@ footer {
       font-size: 0.925rem;
       font-weight: 700;
     }
+  }
+}
+
+.form-section-heading {
+  h4 {
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
+    text-transform: none;
   }
 }
