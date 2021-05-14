@@ -1,11 +1,6 @@
 // Add custom styles here.
 // This file is included after Bootstrap.
 
-$blue: #abafd6;
-$yellow: #fff7b0;
-$pink: #f4b7d1;
-$light: #fffdef;
-
 .hero,
 .header,
 .headline,
@@ -73,6 +68,10 @@ $light: #fffdef;
   }
 }
 
+.form-label {
+  font-weight: 700;
+}
+
 .checkbox-wrapper {
   position: relative;
   cursor: pointer;
@@ -104,7 +103,6 @@ $light: #fffdef;
     background-repeat: no-repeat;
     background-size: 80%;
   }
-
 }
 
 .hero {
@@ -243,11 +241,14 @@ $light: #fffdef;
 }
 
 .rich-text {
-  h2, h3, h4 {
+  h2,
+  h3,
+  h4 {
     text-transform: uppercase;
     margin-bottom: 1.5rem;
   }
-  p, ul {
+  p,
+  ul {
     font-size: 1.25rem;
     margin-bottom: 1.5rem;
     padding-left: 0;
@@ -256,7 +257,7 @@ $light: #fffdef;
     margin: 0;
     padding: 0.75rem 0 0.75rem 5rem;
     list-style: none;
-    background-image: url('../images/wavy-line.svg');
+    background-image: url("../images/wavy-line.svg");
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 4rem;
@@ -314,7 +315,7 @@ table td {
   @media (min-width: 992px) {
     width: 75%;
 
-    &> div {
+    & > div {
       width: 50%;
     }
   }
@@ -335,6 +336,10 @@ table td {
 .double-cards .box {
   div {
     min-width: 33%;
+
+    img {
+      max-width: 200px;
+    }
   }
 
   p {
@@ -359,7 +364,6 @@ table td {
   p {
     font-size: 1.25rem;
   }
-
 }
 
 .share {
@@ -405,7 +409,8 @@ table td {
 }
 
 footer {
-  .left-side, .right-side {
+  .left-side,
+  .right-side {
     @media (min-width: 768px) {
       width: 33%;
     }

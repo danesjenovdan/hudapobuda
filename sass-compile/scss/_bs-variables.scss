@@ -1,11 +1,18 @@
 // Set Bootstrap variables here.
 // This file is included before Bootstrap is compiled.
 
+$green: #a6d07d;
+$blue: #abafd6;
+$yellow: #fff7b0;
+$pink: #f4b7d1;
+$light: #fffdef;
+$primary: $green;
+
 $body-color: #000;
 $font-family-sans-serif: 'Comfortaa', sans-serif;
 $headings-font-family: 'Okolaks WebFont', serif;
 $headings-font-weight: 700;
-$body-bg: #fffdef;
+$body-bg: $light;
 
 $border-radius: 0;
 $btn-border-width: 2px;
@@ -13,13 +20,11 @@ $btn-border-width: 2px;
 $input-border-color: #000;
 $input-border-width: 2px;
 $input-bg: transparent;
-$input-focus-border-color: #000;
+$input-focus-border-color: $blue;
+$input-focus-box-shadow: 0 0 0 .25rem rgba($input-focus-border-color, .25);
 $input-font-size: 1.25rem;
 $input-padding-y: 0.5rem;
 $input-padding-x: 1rem;
-
-$light: #fffdef;
-$primary: #a6d07d;
 
 $link-color: #000;
 $link-hover-color: #000;

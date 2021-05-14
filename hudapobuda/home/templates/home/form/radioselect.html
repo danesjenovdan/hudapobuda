@@ -1,0 +1,14 @@
+<label class="form-label">{{ field.label }}</label>
+{% for value, label in field.field.widget.choices %}
+    <div class="form-check">
+        <input
+            type="radio"
+            id="id_{{ field.name }}_{{ value }}"
+            name="{{ field.name }}"
+            {% if value != None %} value="{{ value|stringformat:'s' }}"{% endif %}
+            {% if value in field.value %}checked{% endif %}
+            {% include 'home/form/attrs.html' %}
+        >
+        <label for="id_{{ field.name }}_{{ value }}" class="form-check-label">{{ label }}</label>
+    </div>
+{% endfor %}
