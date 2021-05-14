@@ -6,7 +6,7 @@
 
         {% for field in form.visible_fields %}
             <div class="mb-3">
-                {% if field.field.widget.widget_type == 'TextInput' %}
+                {% if field.field.widget.widget_type == 'TextInput' or field.field.widget.widget_type == 'NumberInput' or field.field.widget.widget_type == 'EmailInput' %}
                     {% include 'home/form/textinput.html' %}
                 {% elif field.field.widget.widget_type == 'Textarea' %}
                     {% include 'home/form/textarea.html' %}
@@ -34,6 +34,6 @@
             {{ field }}
         {% endfor %}
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary btn-outline-dark">Prispevaj hudo pobudo</button>
     </form>
 </div>

@@ -23,6 +23,7 @@ kustomize/
 /hudapobuda/media/
 /hudapobuda/static/
 *.sqlite3
+**/settings/local.py
 
 # python
 **/__pycache__
