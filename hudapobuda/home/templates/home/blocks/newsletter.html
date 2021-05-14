@@ -6,11 +6,14 @@
     <div class="col-12 col-md-10 col-lg-6">
         <form class="my-4">
             <div class="input-group text-center">
-                <input type="text" class="form-control">
-                <button class="btn btn-primary btn-outline-dark" type="button">Prijavi se</button>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <button class="btn btn-primary btn-outline-dark" type="submit">Prijavi se</button>
+            </div>
+            <div class="input-group mt-1">
+                <div class="form-text" id="response"></div>
             </div>
             <label for="confirm-email" class="checkbox-wrapper text-start">
-                <input type="checkbox" id="confirm-email">
+                <input type="checkbox" id="confirm-email" name="confirm-email" required>
                 <span>{{ value.checkbox_text }}</span>
             </label>
         </form>
