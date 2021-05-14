@@ -79,11 +79,16 @@ class MetaSettings(BaseSetting):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    share_email_text = models.TextField(
+        null=True,
+        blank=True,
+    )
 
     meta_tab_panels = [
         FieldPanel('meta_title'),
         FieldPanel('meta_description'),
         ImageChooserPanel('meta_image'),
+        FieldPanel('share_email_text'),
     ]
 
     edit_handler = TabbedInterface([
