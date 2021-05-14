@@ -5,7 +5,7 @@
         {% csrf_token %}
 
         {% for field in form.visible_fields %}
-            <div class="mb-3">
+            <div class="mb-5">
                 {% if field.field.widget.widget_type == 'TextInput' or field.field.widget.widget_type == 'NumberInput' or field.field.widget.widget_type == 'EmailInput' %}
                     {% include 'home/form/textinput.html' %}
                 {% elif field.field.widget.widget_type == 'Textarea' %}
