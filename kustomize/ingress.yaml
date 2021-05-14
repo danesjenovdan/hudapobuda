@@ -5,13 +5,15 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   tls:
     - hosts:
-        - hudapobuda.lb.djnd.si
+        - hudapobuda.si
+        - www.hudapobuda.si
       secretName: hudapobuda-tls
   rules:
-    - host: hudapobuda.lb.djnd.si
+    - host: www.hudapobuda.si
       http:
         paths:
           - path: /
