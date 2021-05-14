@@ -13,7 +13,7 @@ spec:
         - www.hudapobuda.si
       secretName: hudapobuda-tls
   rules:
-    - host: www.hudapobuda.si
+    - host: hudapobuda.si
       http:
         paths:
           - path: /
@@ -39,9 +39,20 @@ spec:
   tls:
     - hosts:
         - files.hudapobuda.lb.djnd.si
+        - files.hudapobuda.si
       secretName: hudapobuda-nginx-tls
   rules:
     - host: files.hudapobuda.lb.djnd.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hudapobuda-nginx
+                port:
+                  number: 80
+    - host: files.hudapobuda.si
       http:
         paths:
           - path: /
