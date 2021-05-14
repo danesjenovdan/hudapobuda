@@ -1,5 +1,9 @@
+import sys
+
+import requests
+from django.conf import settings
 from django.db import models
-from django.forms import widgets
+from django.forms import fields, widgets
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel, ObjectList,
@@ -166,7 +170,7 @@ class FormPage(AbstractForm):
                 css_classes.append('is-invalid')
                 field.widget.attrs.update({'class': ' '.join(css_classes)})
 
-            if isinstance(field.widget, (widgets.TextInput, widgets.Textarea, widgets.NumberInput)):
+            if isinstance(field.widget, (widgets.TextInput, widgets.Textarea, widgets.NumberInput, widgets.EmailInput)):
                 css_classes = field.widget.attrs.get('class', '').split()
                 css_classes.append('form-control')
                 field.widget.attrs.update({'class': ' '.join(css_classes)})
@@ -182,5 +186,34 @@ class FormPage(AbstractForm):
 
         return form
 
-    # TODO: override this and call super, form is already valid here, so just call email or whatever after
-    # def process_form_submission
+    def process_form_submission(self, form):
+        submission = super().process_form_submission(form)
+
+        email_field_name = None
+        for name, field in form.fields.items():
+            if isinstance(field, fields.EmailField):
+                email_field_name = name
+                break
+
+        email = None
+        if email_field_name:
+            email = submission.get_data().get(email_field_name, None)
+
+        if email and settings.PODPRI_SEND_EMAIL_TOKEN:
+            try:
+                response = requests.post(
+                    'https://podpri.djnd.si/api/send-email/',
+                    data={
+                        'email': email,
+                        'email_template_id': 515,
+                    },
+                    headers={
+                        'Authorization': settings.PODPRI_SEND_EMAIL_TOKEN,
+                    }
+                )
+                if response.status_code != requests.codes.ok:
+                    print(f'SEND MAIL FAILED. status_code={response.status_code}')
+            except:
+                print(f'SEND MAIL FAILED. exception={sys.exc_info()[0]}')
+
+        return submission
