@@ -1,8 +1,10 @@
-<div class="col position-relative">
+<div class="col">
     <div class="custom-badge {{ value.color }} {{ value.position }}">
-        <div class="content text-center">
-            <span>{{ value.line_one }}</span><br>
-            {% if value.line_two %}<span>{{ value.line_two }}</span>{% endif %}
+        <div class="badge-bg">
+            <div class="content text-center">
+                <span>{{ value.line_one }}</span><br>
+                {% if value.line_two %}<span>{{ value.line_two }}</span>{% endif %}
+            </div>
         </div>
     </div>
 </div>
