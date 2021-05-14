@@ -25,6 +25,8 @@ STATIC_URL = os.getenv('DJANGO_STATIC_URL_BASE', '/static/')
 MEDIA_ROOT = os.getenv('DJANGO_MEDIA_ROOT', '/media/')
 MEDIA_URL = os.getenv('DJANGO_MEDIA_URL_BASE', '/media/')
 
+PODPRI_SEND_EMAIL_TOKEN = os.getenv('PODPRI_SEND_EMAIL_TOKEN', 'thisshouldbesecret')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
