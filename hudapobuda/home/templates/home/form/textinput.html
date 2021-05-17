@@ -3,7 +3,7 @@
     type="{{ field.field.widget.input_type }}"
     id="{{ field.id_for_label }}"
     name="{{ field.name }}"
-    {% if field.field.required %}requiredx{% endif %}
+    {% if field.field.required %}required{% endif %}
     {% if field.value != None %} value="{{ field.value|stringformat:'s' }}"{% endif %}
     {% include 'home/form/attrs.html' %}
 >
