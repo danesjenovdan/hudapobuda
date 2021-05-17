@@ -1,6 +1,18 @@
 // Add custom styles here.
 // This file is included after Bootstrap.
 
+// remove input number arrows
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+//
+
 .hero,
 .header,
 .headline,
