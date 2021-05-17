@@ -3,7 +3,7 @@
         type="checkbox"
         id="{{ field.id_for_label }}"
         name="{{ field.name }}"
-        {% if field.field.required %}requiredx{% endif %}
+        {% if field.field.required %}required{% endif %}
         {% if field.value %}checked{% endif %}
         {% include 'home/form/attrs.html' %}
     >

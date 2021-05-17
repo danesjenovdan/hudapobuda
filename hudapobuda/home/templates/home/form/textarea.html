@@ -2,6 +2,6 @@
 <textarea
     id="{{ field.id_for_label }}"
     name="{{ field.name }}"
-    {% if field.field.required %}requiredx{% endif %}
+    {% if field.field.required %}required{% endif %}
     {% include 'home/form/attrs.html' %}
 >{% if field.value != None %}{{ field.value|stringformat:'s' }}{% endif %}</textarea>

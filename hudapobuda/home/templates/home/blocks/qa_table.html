@@ -1,12 +1,12 @@
 {% load wagtailcore_tags %}
 
-<div class="qa-table">
-    <table class="table table-bordered">
+<div class="col">
+    <div class="qa-table">
         {% for block in value %}
-        <tr>
-            <th><h2 class="text-uppercase">{{ block.question }}</h2></th>
-            <td>{{ block.answer }}</td>
-        </tr>
+            <div class="qa-item d-flex flex-column flex-md-row">
+                <div class="qa-question"><h2 class="text-uppercase m-0">{{ block.question }}</h2></div>
+                <div class="qa-answer">{{ block.answer }}</div>
+            </div>
         {% endfor %}
-    </table>
+    </div>
 </div>

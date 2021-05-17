@@ -66,3 +66,18 @@
     });
   });
 })();
+
+(function () {
+  var forms = document.querySelectorAll('.needs-validation')
+  forms.forEach(function (form) {
+    form.style.scrollMarginTop = '120px';
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+        form.scrollIntoView();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
