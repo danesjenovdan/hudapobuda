@@ -7,7 +7,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -325,21 +325,34 @@ input[type=number] {
 }
 
 .qa-table {
-  overflow-x: auto;
-  table {
-    width: 100%;
+  $qa-border: $table-border-width solid $table-border-color;
+
+  border: $qa-border;
+
+  .qa-item {
+    .qa-question,
+    .qa-answer {
+      padding: 1.5rem;
+    }
+
+    .qa-question {
+      flex: 0 0 40%;
+      border-bottom: $qa-border;
+
+      @include media-breakpoint-up(md) {
+        border-bottom: 0;
+        border-right: $qa-border;
+      }
+    }
+
+    .qa-answer {
+      font-size: 1.25rem;
+      line-height: 1.25;
+    }
   }
-  th {
-    min-width: 200px;
-    width: 25%;
-    vertical-align: top;
-    padding: 1.5rem;
-  }
-  td {
-    min-width: 200px;
-    width: 75%;
-    line-height: 1.25;
-    padding: 1.5rem;
+
+  .qa-item:not(:last-of-type) {
+    border-bottom: $qa-border;
   }
 }
 
