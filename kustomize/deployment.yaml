@@ -37,6 +37,13 @@ spec:
           envFrom:
             - secretRef:
                 name: hudapobuda-credentials
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 500m
+            limits:
+              memory: 1Gi
+              cpu: 500m
         - name: migrate
           image: hudapobuda
           command:
@@ -49,6 +56,13 @@ spec:
           envFrom:
             - secretRef:
                 name: hudapobuda-credentials
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 500m
+            limits:
+              memory: 1Gi
+              cpu: 500m
       containers:
         - name: hudapobuda
           image: hudapobuda
@@ -70,6 +84,13 @@ spec:
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: hudapobuda.settings.production
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 800m
+            limits:
+              memory: 1Gi
+              cpu: 800m
         - name: hudapobuda-nginx
           ports:
             - name: http
@@ -79,3 +100,10 @@ spec:
           volumeMounts:
             - name: hudapobuda-persistent-storage
               mountPath: /usr/share/nginx/html
+          resources:
+            requests:
+              memory: 500Mi
+              cpu: 200m
+            limits:
+              memory: 500Mi
+              cpu: 200m
