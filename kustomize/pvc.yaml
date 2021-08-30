@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: hudapobuda-pvc
+  name: hudapobuda-staging-pvc
   labels:
-    app: hudapobuda
+    app: hudapobuda-staging
   annotations:
     pv.beta.kubernetes.io/gid: "1000"
 spec:
-  storageClassName: 'scw-bssd-retain'
+  storageClassName: 'scw-bssd'
   accessModes:
     - ReadWriteOnce
   resources:

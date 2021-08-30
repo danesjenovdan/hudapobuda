@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hudapobuda-deployment
+  name: hudapobuda-staging-deployment
   labels:
-    app: hudapobuda
+    app: hudapobuda-staging
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hudapobuda
+      app: hudapobuda-staging
   template:
     metadata:
       labels:
-        app: hudapobuda
+        app: hudapobuda-staging
     spec:
       securityContext:
         fsGroup: 1000
       volumes:
-        - name: hudapobuda-persistent-storage
+        - name: hudapobuda-staging-persistent-storage
           persistentVolumeClaim:
-            claimName: hudapobuda-pvc
+            claimName: hudapobuda-staging-pvc
       initContainers:
         - name: collectstatic
-          image: hudapobuda
+          image: hudapobuda-staging
           volumeMounts:
-            - name: hudapobuda-persistent-storage
+            - name: hudapobuda-staging-persistent-storage
               mountPath: /pvc
           command:
             - python
@@ -36,7 +36,7 @@ spec:
               value: hudapobuda.settings.production
           envFrom:
             - secretRef:
-                name: hudapobuda-credentials
+                name: hudapobuda-staging-credentials
           resources:
             requests:
               memory: 1Gi
@@ -45,7 +45,7 @@ spec:
               memory: 1Gi
               cpu: 200m
         - name: migrate
-          image: hudapobuda
+          image: hudapobuda-staging
           command:
             - python
             - manage.py
@@ -55,7 +55,7 @@ spec:
               value: hudapobuda.settings.production
           envFrom:
             - secretRef:
-                name: hudapobuda-credentials
+                name: hudapobuda-staging-credentials
           resources:
             requests:
               memory: 1Gi
@@ -64,10 +64,10 @@ spec:
               memory: 1Gi
               cpu: 200m
       containers:
-        - name: hudapobuda
-          image: hudapobuda
+        - name: hudapobuda-staging
+          image: hudapobuda-staging
           volumeMounts:
-            - name: hudapobuda-persistent-storage
+            - name: hudapobuda-staging-persistent-storage
               mountPath: /pvc
           command:
             - gunicorn
@@ -80,7 +80,7 @@ spec:
             - containerPort: 8000
           envFrom:
               - secretRef:
-                  name: hudapobuda-credentials
+                  name: hudapobuda-staging-credentials
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: hudapobuda.settings.production
@@ -91,14 +91,14 @@ spec:
             limits:
               memory: 1Gi
               cpu: 500m
-        - name: hudapobuda-nginx
+        - name: hudapobuda-staging-nginx
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
           image: nginx:alpine
           volumeMounts:
-            - name: hudapobuda-persistent-storage
+            - name: hudapobuda-staging-persistent-storage
               mountPath: /usr/share/nginx/html
           resources:
             requests:
