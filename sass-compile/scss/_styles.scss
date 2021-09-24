@@ -415,6 +415,82 @@ input[type="number"] {
   }
 }
 
+.initiatives-section {
+  .box {
+    margin: 0 0.5rem;
+    &:hover {
+      cursor: pointer;
+      button {
+        background-color: $blue;
+      }
+    }
+
+    .box-body {
+      padding: 1.5rem;
+
+      h4 {
+        margin-bottom: 1rem;
+      }
+
+      h6 {
+        font-family: $font-family-sans-serif;
+        font-weight: 400;
+        text-decoration: underline;
+      }
+
+      p {
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+      }
+
+      hr {
+        opacity: 1;
+        height: 2px;
+      }
+
+      button {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.progress {
+  width: 100%;
+  height: 1.5rem;
+  margin-bottom: 0.5rem;
+  background: $light;
+  border: 2px solid black;
+  overflow: hidden;
+
+  .progress-bar {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg,$pink,$blue 25%,$green 50%, $pink 75%, $blue);
+    background-size: 300% 100%;
+    border-right: 2px solid black;
+    animation: progress-animation 2s linear infinite;
+  }
+}
+
+@-webkit-keyframes progress-animation {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
+@keyframes progress-animation {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
 .share {
   .share-box {
     display: block;
