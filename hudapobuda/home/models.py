@@ -14,7 +14,7 @@ from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import (FORM_FIELD_CHOICES, AbstractForm,
                                           AbstractFormField)
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core.fields import StreamField
+from wagtail.core.fields import StreamField, RichTextField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
@@ -145,6 +145,84 @@ class ContentPage(Page):
 
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
+    ]
+
+
+class InitiativePage(Page):
+    organization = models.CharField(
+        verbose_name=_('Ime organizacije'),
+        max_length=255,
+    )
+    organization_url = models.URLField(
+        null=True,
+        blank=True,
+    )
+    deadline = models.DateField()
+    donation_ID = models.IntegerField(
+        verbose_name=_('ID donacijske kampanje'),
+    )
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Slika'),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+    body = RichTextField(
+        verbose_name=_('Vsebina'),
+    )
+    support_box_title = models.CharField(
+        verbose_name=_('Škatla za donacije - naslov'),
+        max_length=255,
+    )
+    support_box_button_text = models.CharField(
+        verbose_name=_('Škatla za donacije - besedilo na gumbu'),
+        max_length=255,
+    )
+    share_box_title = models.CharField(
+        verbose_name=_('Škatla za delitev - naslov'),
+        max_length=255,
+    )
+    share_box_button_text = models.CharField(
+        verbose_name=_('Škatla za delitev - besedilo na gumbu'),
+        max_length=255,
+    )
+    share_box_url = models.URLField(
+        verbose_name=_('URL za deljenje'),
+        null=True,
+        blank=True,
+    )
+    share_box_fb = models.TextField(
+        verbose_name=_('Delitev - besedilo facebook objave'),
+    )
+    share_box_tw = models.TextField(
+        verbose_name=_('Delitev - besedilo twitter objave'),
+    )
+    share_box_mail_subject = models.TextField(
+        verbose_name=_('Delitev - zadeva v mailu'),
+    )
+    share_box_mail = models.TextField(
+        verbose_name=_('Delitev - besedilo maila'),
+    )
+
+
+    content_panels = Page.content_panels + [
+        FieldPanel('organization'),
+        FieldPanel('organization_url'),
+        FieldPanel('deadline'),
+        FieldPanel('donation_ID'),
+        ImageChooserPanel('image'),
+        FieldPanel('body'),
+        FieldPanel('support_box_title'),
+        FieldPanel('support_box_button_text'),
+        FieldPanel('share_box_title'),
+        FieldPanel('share_box_button_text'),
+        FieldPanel('share_box_url'),
+        FieldPanel('share_box_fb'),
+        FieldPanel('share_box_tw'),
+        FieldPanel('share_box_mail_subject'),
+        FieldPanel('share_box_mail'),
     ]
 
 

@@ -81,3 +81,18 @@
     }, false);
   });
 })();
+
+(function () {
+  const initiative_cards = document.querySelectorAll('.initiatives-section .box')
+  console.log(initiative_cards)
+  initiative_cards.forEach(function (card) {
+    const donation_id = card.getAttribute('data-donation-id')
+    console.log(donation_id)
+    fetch("https://podpri.djnd.si/api/donation-statistics/4/")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        card.querySelector('.amount').textContent = data['donation-amount']
+      });
+  })
+})();

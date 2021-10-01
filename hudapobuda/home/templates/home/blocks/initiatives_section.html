@@ -1,7 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="initiatives-section col-lg-4">
-    <div class="box" onclick="window.location.href = '{% if value.card1.page %}{% pageurl value.card1.page %}{% endif %}'">
+<div class="initiatives-section col-lg-4 mb-4 mb-lg-0">
+    <div class="box" data-donation-id="{{value.card1.donation_ID }}" onclick="window.location.href = '{% if value.card1.page %}{% pageurl value.card1.page %}{% endif %}'">
         <div class="">
             {% image value.card1.image width-1100 class="img-fluid w-100" %}
         </div>
@@ -14,43 +14,43 @@
             <div class="progress">
                 <span class="progress-bar" style="width: 75%"></span>
             </div>
-            <p>Zbranih <strong>2345 €</strong> od <strong>5000 €</strong>.</p>
+            <p>Zbranih <strong><span class="amount">2345</span> €</strong> od <strong>5000 €</strong>.</p>
             <button class="btn btn-primary w-100">{{ value.card1.button_text }}</button>
         </div>
     </div>
 </div>
-<div class="initiatives-section col-lg-4">
-    <div class="box" onclick="window.location.href = '{% if value.card1.page %}{% pageurl value.card1.page %}{% endif %}'">
+<div class="initiatives-section col-lg-4 mb-4 mb-lg-0">
+    <div class="box" data-donation-id="{{value.card2.donation_ID }}" onclick="window.location.href = '{% if value.card2.page %}{% pageurl value.card2.page %}{% endif %}'">
         <div class="">
             {% image value.card2.image width-1100 class="img-fluid w-100" %}
         </div>
         <div class="box-body">
             <h4>{{ value.card2.title }}</h4>
-            <h6><a href="{{ value.card1.author_url }}">{{ value.card2.author }}</a></h6>
+            <h6><a href="{{ value.card2.author_url }}">{{ value.card2.author }}</a></h6>
             <p>{{ value.card2.description }}</p>
             <hr />
             <div class="progress">
                 <span class="progress-bar" style="width: 75%"></span>
             </div>
-            <p>Zbranih <strong>2345 €</strong> od <strong>5000 €</strong>.</p>
+            <p>Zbranih <strong><span class="amount">2345</span> €</strong> od <strong>5000 €</strong>.</p>
             <button class="btn btn-primary w-100">{{ value.card2.button_text }}</button>
         </div>
     </div>
 </div>
 <div class="initiatives-section col-lg-4">
-    <div class="box" onclick="window.location.href = '{% if value.card1.page %}{% pageurl value.card1.page %}{% endif %}'">
+    <div class="box" data-donation-id="{{value.card3.donation_ID }}" onclick="window.location.href = '{% if value.card3.page %}{% pageurl value.card3.page %}{% endif %}'">
         <div class="">
             {% image value.card3.image width-1100 class="img-fluid w-100" %}
         </div>
         <div class="box-body">
             <h4>{{ value.card3.title }}</h4>
-            <h6><a href="{{ value.card1.author_url }}">{{ value.card3.author }}</a></h6>
+            <h6><a href="{{ value.card3.author_url }}">{{ value.card3.author }}</a></h6>
             <p>{{ value.card3.description }}</p>
             <hr />
             <div class="progress">
                 <span class="progress-bar" style="width: 75%"></span>
             </div>
-            <p>Zbranih <strong>2345 €</strong> od <strong>5000 €</strong>.</p>
+            <p>Zbranih <strong><span class="amount">2345</span> €</strong> od <strong>5000 €</strong>.</p>
             <button class="btn btn-primary w-100">{{ value.card3.button_text }}</button>
         </div>
     </div>
