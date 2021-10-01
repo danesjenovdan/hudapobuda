@@ -1,6 +1,7 @@
 import sys
 
 import requests
+import datetime
 from django import forms
 from django.conf import settings
 from django.db import models
@@ -205,6 +206,12 @@ class InitiativePage(Page):
     share_box_mail = models.TextField(
         verbose_name=_('Delitev - besedilo maila'),
     )
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        today = datetime.date.today()
+        context['days_left'] = (self.deadline - today).days
+        return context
 
 
     content_panels = Page.content_panels + [

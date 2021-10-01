@@ -12,23 +12,23 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="text-uppercase">{{ page.title }}</h1>
-                <h3 class="text-uppercase">{{page.organization}}</h3>
+                <h3 class="text-uppercase">{{ page.organization }}</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-8 my-4 my-lg-0">
                 {% image page.image width-1444 class="img-fluid w-100" %}
             </div>
-            <div class="col-12 col-lg-4 initiative-info">
-                <p><span>23</span> podpornikov</p>
-                <p>še <span>12</span> dni do zaključka</p>
+            <div class="col-12 col-lg-4 initiative-info" data-donation-id="{{ page.donation_ID }}">
+                <p><span class="highlighted count">0</span> podpornikov</p>
+                <p>še <span class="highlighted days">{{ days_left }}</span> dni do zaključka</p>
                 <div class="">
                     <div class="badge-initiative">
-                        <p>Zbranih <strong>2345 €</strong> od <strong>5000 €</strong>.</p>
+                        <p>Zbranih <strong><span class="amount"></span> €</strong> od <strong>5000 €</strong>.</p>
                     </div>
                 </div>
                 <div class="progress">
-                    <span class="progress-bar" style="width: 75%"></span>
+                    <span class="progress-bar"></span>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-4 d-none d-lg-block">
                 <div class="sidebar">
-                    <div class="box text-center mb-4">
+                    <div class="box text-center mb-5">
                         <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
                         <div class="support-buttons">
                             <div class="support-button">

@@ -495,7 +495,7 @@ input[type="number"] {
   display: block;
   border: 2px solid #000;
   margin: 0.5rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: $yellow;
   transition: background-color 0.15s ease-in-out;
   @media (min-width: 768px) {
@@ -562,7 +562,7 @@ footer {
   position: sticky;
   top: 7rem;
   .box {
-    padding: 2rem;
+    padding: 2.5rem;
   }
   .box:first-of-type {
     background-color: $green;
@@ -612,7 +612,7 @@ footer {
       }
       font-size: 1.25rem;
       font-weight: 700;
-      span {
+      .highlighted {
         font-family: $headings-font-family;
         font-size: 2rem;
       }
@@ -687,8 +687,8 @@ footer {
   border: 2px solid black;
   border-radius: 50%;
   background-color: $light;
-  width: 8rem;
-  height: 8rem;
+  width: 9rem;
+  height: 9rem;
   margin: 0.5rem 0;
   display: flex;
   align-items: center;

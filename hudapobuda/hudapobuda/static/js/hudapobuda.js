@@ -84,15 +84,31 @@
 
 (function () {
   const initiative_cards = document.querySelectorAll('.initiatives-section .box')
-  console.log(initiative_cards)
   initiative_cards.forEach(function (card) {
     const donation_id = card.getAttribute('data-donation-id')
-    console.log(donation_id)
-    fetch("https://podpri.djnd.si/api/donation-statistics/4/")
+    fetch(`https://podpri.djnd.si/api/donation-statistics/${donation_id}/`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         card.querySelector('.amount').textContent = data['donation-amount']
+        card.querySelector('.progress-bar').style.width = (parseInt(data['donation-amount']) / 5000 * 100) + '%'
       });
   })
+})();
+
+(function () {
+  const initiative_info = document.querySelector('.headline-initiative .initiative-info');
+  if (initiative_info) {
+    const donation_id = initiative_info.getAttribute('data-donation-id');
+    fetch(`https://podpri.djnd.si/api/donation-statistics/${donation_id}/`)
+      .then(response => response.json())
+      .then(data => {
+        const amount = parseInt(data['donation-amount'])
+        const count = parseInt(data['donation-count'])
+        //const amount = 2000
+        //const count = 45
+        initiative_info.querySelector('.amount').textContent = `${amount}`
+        initiative_info.querySelector('.progress-bar').style.width = (amount / 5000 * 100) + '%'
+        initiative_info.querySelector('.count').textContent = `${count}`
+      });
+  }
 })();
