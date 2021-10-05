@@ -4,6 +4,12 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 
+DONATION_IDS = [
+    (6, '6 - Pušča, na pomoč'),
+    (7, '7 - Skupnostni studio, glas skupnosti'),
+    (8, '8 - Zapišimo spomine')
+]
+
 class ExternalLinkBlock(blocks.StructBlock):
     style = blocks.ChoiceBlock(
         choices=[
@@ -189,6 +195,60 @@ class ContentBlock(blocks.StreamBlock):
         ),
         label=_('Tabela z vprašanji in odgovori'),
         template='home/blocks/qa_table.html',
+        icon='title',
+    )
+    initiative_boxes = blocks.StructBlock(
+        [
+            ('card1', blocks.StructBlock([
+                ('title', blocks.CharBlock(label=_('Ime pobude'))),
+                ('page', blocks.PageChooserBlock(
+                    label=_('Povezava do podstrani pobude'),
+                )),
+                ('image', ImageChooserBlock(label=_('Slika'))),
+                ('author', blocks.CharBlock(label=_('Organizacija'))),
+                ('author_url', blocks.URLBlock(
+                    label=_('Povezava do organizacije'),
+                )),
+                ('description', blocks.CharBlock(label=_('Opis'))),
+                ('button_text', blocks.CharBlock(label=_('Besedilo na gumbu'))),
+                ('donation_ID', blocks.ChoiceBlock(label=_('ID donacijske kampanje'), choices=DONATION_IDS, required=True)),
+            ],
+            label=_('Prva kartica'),
+            )),
+            ('card2', blocks.StructBlock([
+                ('title', blocks.CharBlock(label=_('Ime pobude'))),
+                ('page', blocks.PageChooserBlock(
+                    label=_('Povezava do podstrani pobude'),
+                )),
+                ('image', ImageChooserBlock(label=_('Slika'))),
+                ('author', blocks.CharBlock(label=_('Organizacija'))),
+                ('author_url', blocks.URLBlock(
+                    label=_('Povezava do organizacije'),
+                )),
+                ('description', blocks.CharBlock(label=_('Opis'))),
+                ('button_text', blocks.CharBlock(label=_('Besedilo na gumbu'))),
+                ('donation_ID', blocks.ChoiceBlock(label=_('ID donacijske kampanje'), choices=DONATION_IDS, required=True)),
+            ],
+            label=_('Druga kartica'),
+            )),
+            ('card3', blocks.StructBlock([
+                ('title', blocks.CharBlock(label=_('Ime pobude'))),
+                ('page', blocks.PageChooserBlock(
+                    label=_('Povezava do podstrani pobude'),
+                )),
+                ('image', ImageChooserBlock(label=_('Slika'))),
+                ('author', blocks.CharBlock(label=_('Organizacija'))),
+                ('author_url', blocks.URLBlock(
+                    label=_('Povezava do organizacije'),
+                )),
+                ('description', blocks.CharBlock(label=_('Opis'))),
+                ('button_text', blocks.CharBlock(label=_('Besedilo na gumbu'))),
+                ('donation_ID', blocks.ChoiceBlock(label=_('ID donacijske kampanje'), choices=DONATION_IDS, required=True)),
+            ],
+            label=_('Tretja kartica'),
+            ))
+        ],
+        template='home/blocks/initiatives_section.html',
         icon='title',
     )
 

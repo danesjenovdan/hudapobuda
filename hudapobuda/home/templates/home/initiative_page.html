@@ -1,0 +1,180 @@
+{% extends "home/base_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block body_class %}page page--initiative{% endblock %}
+
+{% block content %}
+
+{% include "home/includes/header.html" with show_logo=False %}
+
+<div class="bg-section bg-section--yellow headline-initiative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-uppercase">{{ page.title }}</h1>
+                <h3 class="text-uppercase">{{ page.organization }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-8 my-4 my-lg-0">
+                {% image page.image width-1444 class="img-fluid w-100" %}
+            </div>
+            <div class="col-12 col-lg-4 initiative-info" data-donation-id="{{ page.donation_ID }}">
+                <p><span class="highlighted count">0</span> podpornikov</p>
+                <p>še <span class="highlighted days">{{ days_left }}</span> dni do zaključka</p>
+                <div class="">
+                    <div class="badge-initiative">
+                        <p>Zbranih <strong><span class="amount">5</span> €</strong> od <strong>5000 €</strong>.</p>
+                    </div>
+                </div>
+                <div class="progress">
+                    <span class="progress-bar"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-section bg-section--light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 body-initiative pe-lg-5 rich-text">
+                {{ page.body|richtext }}
+            </div>
+            <div class="col-4 d-none d-lg-block">
+                <div class="sidebar">
+                    <div class="box text-center mb-5" id="support-box-1">
+                        <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
+                        <div class="support-buttons justify-content-center justify-content-xl-between">
+                            <div class="support-button selected" data-amount="5">
+                                <img src="{% static 'images/support1.svg' %}" alt="doniraj ikona">
+                                <span>5 EUR</span>
+                            </div>
+                            <div class="support-button" data-amount="10">
+                                <img src="{% static 'images/support2.svg' %}" alt="doniraj ikona">
+                                <span>10 EUR</span>
+                            </div>
+                            <div class="support-button" data-amount="25">
+                                <img src="{% static 'images/support3.svg' %}" alt="doniraj ikona">
+                                <span>25 EUR</span>
+                            </div>
+                            <div class="support-button" data-amount="50">
+                                <img src="{% static 'images/support4.svg' %}" alt="doniraj ikona">
+                                <span>50 EUR</span>
+                            </div>
+                            <div class="support-button" data-amount="100">
+                                <img src="{% static 'images/support5.svg' %}" alt="doniraj ikona">
+                                <span>100 EUR</span>
+                            </div>
+                            <div class="support-button p-4">
+                                <input type="text" class="form-control">
+                                <span>EUR</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-3 w-100" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
+                    </div>
+                    <div class="box text-center">
+                        <h3 class="text-uppercase mb-4">{{ page.share_box_title }}</h3>
+                        <div class="url mb-4" onclick="selectLink(event)">{{ page.share_box_url }}</div>
+                        <div class="social-media share d-flex justify-content-between">
+                            <button class="btn btn-primary share-box isfbnoapp">
+                                <div>
+                                    <img src="{% static 'images/social-facebook.svg' %}">
+                                </div>
+                            </button>
+                            <button class="btn btn-primary share-box istwbox">
+                                <div>
+                                    <img src="{% static 'images/social-twitter.svg' %}">
+                                </div>
+                            </button>
+                            <button class="btn btn-primary share-box isembox">
+                                <div>
+                                    <img src="{% static 'images/mejl.svg' %}">
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal with iframe-->
+<div class="modal fade" id="modal-iframe" tabindex="-1" aria-labelledby="modal-iframe" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">PODPRI POBUDO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <iframe id="donation-frame" src="/" height="600" width="100%" title="description"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for mobile donations-->
+<div class="modal fade" id="modal-mobile-donations" tabindex="-1" aria-labelledby="modal-mobile-donations" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">PODPRI POBUDO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1 class="modal-title text-uppercase">{{ page.title }}</h1>
+                <h3 class="text-uppercase">{{ page.organization }}</h3>
+                <div class="support-buttons justify-content-center justify-content-xl-between">
+                    <div class="support-button selected" data-amount="5">
+                        <img src="{% static 'images/support1.svg' %}" alt="doniraj ikona">
+                        <span>5 EUR</span>
+                    </div>
+                    <div class="support-button" data-amount="10">
+                        <img src="{% static 'images/support2.svg' %}" alt="doniraj ikona">
+                        <span>10 EUR</span>
+                    </div>
+                    <div class="support-button" data-amount="25">
+                        <img src="{% static 'images/support3.svg' %}" alt="doniraj ikona">
+                        <span>25 EUR</span>
+                    </div>
+                    <div class="support-button" data-amount="50">
+                        <img src="{% static 'images/support4.svg' %}" alt="doniraj ikona">
+                        <span>50 EUR</span>
+                    </div>
+                    <div class="support-button" data-amount="100">
+                        <img src="{% static 'images/support5.svg' %}" alt="doniraj ikona">
+                        <span>100 EUR</span>
+                    </div>
+                    <div class="support-button p-4">
+                        <input type="text" class="form-control">
+                        <span>EUR</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary mt-3 w-100" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- mobile donation button -->
+<div class="bg-section bg-section--light mobile-donations-section d-lg-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 px-4">
+                <button class="btn btn-primary w-100" onclick="openDonations()">{{ page.support_box_button_text }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include "home/includes/footer.html" %}
+
+<script>
+    window.SHARE_EMAIL_TEXT = "{{ page.share_box_mail|escapejs }}";
+    window.SHARE_TWEET_TEXT = "{{ page.share_box_tw|escapejs }}";
+</script>
+
+{% endblock content %}
