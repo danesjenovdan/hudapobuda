@@ -161,6 +161,11 @@ class InitiativePage(Page):
     deadline = models.DateField()
     donation_ID = models.IntegerField(
         verbose_name=_('ID donacijske kampanje'),
+        choices=[
+            (6, '6 - Pušča, na pomoč'),
+            (7, '7 - Skupnostni studio, glas skupnosti'),
+            (8, '8 - Zapišimo spomine')
+        ]
     )
     image = models.ForeignKey(
         'wagtailimages.Image',
@@ -194,14 +199,8 @@ class InitiativePage(Page):
         null=True,
         blank=True,
     )
-    share_box_fb = models.TextField(
-        verbose_name=_('Delitev - besedilo facebook objave'),
-    )
     share_box_tw = models.TextField(
         verbose_name=_('Delitev - besedilo twitter objave'),
-    )
-    share_box_mail_subject = models.TextField(
-        verbose_name=_('Delitev - zadeva v mailu'),
     )
     share_box_mail = models.TextField(
         verbose_name=_('Delitev - besedilo maila'),
@@ -226,9 +225,7 @@ class InitiativePage(Page):
         FieldPanel('share_box_title'),
         FieldPanel('share_box_button_text'),
         FieldPanel('share_box_url'),
-        FieldPanel('share_box_fb'),
         FieldPanel('share_box_tw'),
-        FieldPanel('share_box_mail_subject'),
         FieldPanel('share_box_mail'),
     ]
 

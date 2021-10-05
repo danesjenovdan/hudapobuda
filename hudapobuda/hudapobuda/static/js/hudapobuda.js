@@ -55,6 +55,10 @@
         const url = `https://www.facebook.com/dialog/feed?app_id=301375193309601&redirect_uri=https%3A%2F%2Fhudapobuda.si&link=https%3A%2F%2Fhudapobuda.si&ref=responsive`;
         window.open(url, '_blank');
       }
+      if (event.currentTarget.className.indexOf('isfbnoapp') != -1) {
+        const url = `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhudapobuda.si`;
+        window.open(url, 'pop', 'width=600, height=400, scrollbars=no');
+      }
       if (event.currentTarget.className.indexOf('istwbox') != -1) {
         const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.SHARE_TWEET_TEXT + ' https://hudapobuda.si')}`;
         window.open(url, '_blank');
@@ -95,20 +99,81 @@
   })
 })();
 
+let donation_id;
+let modalIFrame;
+let modalMobileDonations;
+
 (function () {
   const initiative_info = document.querySelector('.headline-initiative .initiative-info');
   if (initiative_info) {
-    const donation_id = initiative_info.getAttribute('data-donation-id');
+    donation_id = initiative_info.getAttribute('data-donation-id');
     fetch(`https://podpri.djnd.si/api/donation-statistics/${donation_id}/`)
       .then(response => response.json())
       .then(data => {
         const amount = parseInt(data['donation-amount'])
         const count = parseInt(data['donation-count'])
-        //const amount = 2000
-        //const count = 45
         initiative_info.querySelector('.amount').textContent = `${amount}`
         initiative_info.querySelector('.progress-bar').style.width = (amount / 5000 * 100) + '%'
         initiative_info.querySelector('.count').textContent = `${count}`
       });
   }
 })();
+
+// donations
+(function () {
+  // modal
+  modalIFrame = new bootstrap.Modal(document.getElementById('modal-iframe'), { show: false });
+  modalMobileDonations = new bootstrap.Modal(document.getElementById('modal-mobile-donations'), { show: false });
+  const support_buttons = document.querySelectorAll('.support-button');
+  support_buttons.forEach(function (sb) {
+    sb.addEventListener('click',(event) => {
+      support_buttons.forEach((button) => {
+        button.classList.remove('selected');
+        const input_f = button.querySelector('input')
+        if (input_f) {
+          input_f.classList.remove('error');
+        }
+      })
+      let target = event.target;
+      if (!target.classList.contains('support-button')) {
+        target = target.parentNode;
+      }
+      target.classList.add('selected');
+    })
+  })
+})();
+
+function setDonationLink() {
+  const selected_support_button = document.querySelector('.support-button.selected');
+  let donation_amount;
+  if (selected_support_button.querySelector('input')) {
+    donation_amount = selected_support_button.querySelector('input').value;
+    if (!donation_amount) {
+      selected_support_button.querySelector('input').classList.add('error');
+    }
+  } else {
+    donation_amount = selected_support_button.getAttribute('data-amount');
+  }
+  if (donation_amount && donation_id) {
+    document.getElementById('donation-frame').setAttribute('src', `https://nov.djnd.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
+    modalMobileDonations.hide();
+    modalIFrame.show();
+  }
+}
+
+function openDonations() {
+  modalMobileDonations.show();
+}
+
+function selectLink(e) {
+  const el = e.target;
+  const sel = window.getSelection();
+  if (sel.toString() === ''){ // no text selection
+    window.setTimeout(function(){
+      const range = document.createRange(); // range object
+      range.selectNodeContents(el); // sets Range
+      sel.removeAllRanges(); // remove all ranges from selection
+      sel.addRange(range);// add Range to a Selection.
+    },1);
+  }
+}

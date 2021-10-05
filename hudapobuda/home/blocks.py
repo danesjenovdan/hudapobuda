@@ -4,6 +4,12 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 
+DONATION_IDS = [
+    (6, '6 - Pušča, na pomoč'),
+    (7, '7 - Skupnostni studio, glas skupnosti'),
+    (8, '8 - Zapišimo spomine')
+]
+
 class ExternalLinkBlock(blocks.StructBlock):
     style = blocks.ChoiceBlock(
         choices=[
@@ -205,7 +211,7 @@ class ContentBlock(blocks.StreamBlock):
                 )),
                 ('description', blocks.CharBlock(label=_('Opis'))),
                 ('button_text', blocks.CharBlock(label=_('Besedilo na gumbu'))),
-                ('donation_ID', blocks.CharBlock(label=_('ID donacijske kampanje'))),
+                ('donation_ID', blocks.ChoiceBlock(label=_('ID donacijske kampanje'), choices=DONATION_IDS, required=True)),
             ],
             label=_('Prva kartica'),
             )),
@@ -221,7 +227,7 @@ class ContentBlock(blocks.StreamBlock):
                 )),
                 ('description', blocks.CharBlock(label=_('Opis'))),
                 ('button_text', blocks.CharBlock(label=_('Besedilo na gumbu'))),
-                ('donation_ID', blocks.CharBlock(label=_('ID donacijske kampanje'))),
+                ('donation_ID', blocks.ChoiceBlock(label=_('ID donacijske kampanje'), choices=DONATION_IDS, required=True)),
             ],
             label=_('Druga kartica'),
             )),
@@ -237,7 +243,7 @@ class ContentBlock(blocks.StreamBlock):
                 )),
                 ('description', blocks.CharBlock(label=_('Opis'))),
                 ('button_text', blocks.CharBlock(label=_('Besedilo na gumbu'))),
-                ('donation_ID', blocks.CharBlock(label=_('ID donacijske kampanje'))),
+                ('donation_ID', blocks.ChoiceBlock(label=_('ID donacijske kampanje'), choices=DONATION_IDS, required=True)),
             ],
             label=_('Tretja kartica'),
             ))
