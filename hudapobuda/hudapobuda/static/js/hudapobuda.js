@@ -94,7 +94,11 @@
       .then(response => response.json())
       .then(data => {
         card.querySelector('.amount').textContent = data['donation-amount']
-        card.querySelector('.progress-bar').style.width = (parseInt(data['donation-amount']) / 5000 * 100) + '%'
+        const progressBarWidth = Math.round(parseInt(data['donation-amount']) / 5000 * 100)
+        if (progressBarWidth > 0) {
+          card.querySelector('.progress-bar').style.width = progressBarWidth + '%'
+          card.querySelector('.progress-bar').style.display = 'block'
+        }
       });
   })
 })();
@@ -113,7 +117,11 @@ let modalMobileDonations;
         const amount = parseInt(data['donation-amount'])
         const count = parseInt(data['donation-count'])
         initiative_info.querySelector('.amount').textContent = `${amount}`
-        initiative_info.querySelector('.progress-bar').style.width = (amount / 5000 * 100) + '%'
+        const progressBarWidth = Math.round(amount / 5000 * 100)
+        if (progressBarWidth > 0) {
+          initiative_info.querySelector('.progress-bar').style.width = progressBarWidth + '%'
+          initiative_info.querySelector('.progress-bar').style.display = 'block'
+        }
         initiative_info.querySelector('.count').textContent = `${count}`
       });
   }
@@ -139,6 +147,9 @@ let modalMobileDonations;
         target = target.parentNode;
       }
       target.classList.add('selected');
+      if (!target.querySelector('input')) {
+        setDonationLink();
+      }
     })
   })
 })();

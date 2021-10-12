@@ -415,6 +415,12 @@ input[type="number"] {
   }
 }
 
+.page--initiative {
+  @media (max-width: 991.98px) {
+    margin-bottom: 7rem;
+  }
+}
+
 .initiatives-section {
   .box {
     margin: 0 0.5rem;
@@ -464,9 +470,10 @@ input[type="number"] {
   overflow: hidden;
 
   .progress-bar {
-    display: block;
+    display: none;
     height: 100%;
-    background: linear-gradient(90deg,$pink,$blue 25%,$green 50%, $pink 75%, $blue);
+    // background: linear-gradient(90deg,$pink,$blue 25%,$green 50%, $pink 75%, $blue);
+    background-image: linear-gradient(90deg, $pink, $blue 17%, $green 34%, $yellow 51%, $pink 68%, $blue 85%, $green);
     background-size: 300% 100%;
     border-right: 2px solid black;
     animation: progress-animation 2s linear infinite;
@@ -532,13 +539,13 @@ input[type="number"] {
 }
 
 footer {
-  .left-side,
-  .right-side {
-    @media (min-width: 768px) {
-      width: 33%;
-    }
-  }
   .left-side {
+    @media (min-width: 768px) {
+      width: 40%;
+    }
+    @media (min-width: 1400px) {
+      width: 50%;
+    }
     img {
       max-width: 12rem;
     }
@@ -548,12 +555,25 @@ footer {
     }
   }
   .right-side {
+    @media (min-width: 768px) {
+      width: 60%;
+    }
+    @media (min-width: 1400px) {
+      width: 50%;
+    }
     img {
-      max-width: 16rem;
+      max-width: 14rem;
     }
     p {
       font-size: 0.925rem;
       font-weight: 700;
+    }
+  }
+  .sm-icon {
+    display: inline-block;
+    text-decoration: none;
+    img {
+      width: 4rem;
     }
   }
 }
@@ -612,6 +632,26 @@ footer {
   }
 }
 
+.bottom-donate-bar {
+  .box {
+    padding: 1.5rem;
+    background-color: $green;
+    .btn {
+      background-color: $pink;
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 0.5rem 6rem;
+      &:hover {
+        border-color: black;
+        background-color: $blue;
+      }
+    }
+    @media (min-width: 1400px) {
+      padding: 2.5rem;
+    }
+  }
+}
+
 .headline-initiative {
   h1 {
     font-size: 3rem;
@@ -648,7 +688,7 @@ footer {
     margin: 2rem 0;
     p {
       text-align: center;
-      padding: 2rem 3rem;
+      padding: 2rem 0 2rem 3.5rem;
       font-weight: 400;
     }
   }

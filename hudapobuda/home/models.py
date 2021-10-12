@@ -190,10 +190,6 @@ class InitiativePage(Page):
         verbose_name=_('Škatla za delitev - naslov'),
         max_length=255,
     )
-    share_box_button_text = models.CharField(
-        verbose_name=_('Škatla za delitev - besedilo na gumbu'),
-        max_length=255,
-    )
     share_box_url = models.URLField(
         verbose_name=_('URL za deljenje'),
         null=True,
@@ -223,7 +219,6 @@ class InitiativePage(Page):
         FieldPanel('support_box_title'),
         FieldPanel('support_box_button_text'),
         FieldPanel('share_box_title'),
-        FieldPanel('share_box_button_text'),
         FieldPanel('share_box_url'),
         FieldPanel('share_box_tw'),
         FieldPanel('share_box_mail'),

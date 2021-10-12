@@ -24,7 +24,7 @@
                 <p>še <span class="highlighted days">{{ days_left }}</span> dni do zaključka</p>
                 <div class="">
                     <div class="badge-initiative">
-                        <p>Zbranih <strong><span class="amount">5</span> €</strong> od <strong>5000 €</strong>.</p>
+                        <p>Zbranih <br><strong><span class="amount">5</span> €</strong> od <br><strong>5000 €</strong>.</p>
                     </div>
                 </div>
                 <div class="progress">
@@ -38,15 +38,63 @@
 <div class="bg-section bg-section--light">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-8 body-initiative pe-lg-5 rich-text">
-                {{ page.body|richtext }}
+            <div class="col-12 col-lg-8 body-initiative px-4 ps-lg-3 pe-lg-5 rich-text">
+                <div class="row">
+                    <div class="col-12">
+                        {{ page.body|richtext }}
+                    </div>
+                    <div class="col-12 bottom-donate-bar d-none d-lg-block">
+                        <div class="box text-center my-5">
+                            <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
+                            <div class="row support-buttons justify-content-center justify-content-xl-between">
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="support-button" data-amount="5">
+                                        <img src="{% static 'images/support1.svg' %}" alt="doniraj ikona">
+                                        <span>5 EUR</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="support-button" data-amount="10">
+                                        <img src="{% static 'images/support2.svg' %}" alt="doniraj ikona">
+                                        <span>10 EUR</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="support-button" data-amount="25">
+                                        <img src="{% static 'images/support3.svg' %}" alt="doniraj ikona">
+                                        <span>25 EUR</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="support-button" data-amount="50">
+                                        <img src="{% static 'images/support4.svg' %}" alt="doniraj ikona">
+                                        <span>50 EUR</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="support-button" data-amount="100">
+                                        <img src="{% static 'images/support5.svg' %}" alt="doniraj ikona">
+                                        <span>100 EUR</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="support-button p-4">
+                                        <input type="text" class="form-control">
+                                        <span>EUR</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-3" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-4 d-none d-lg-block">
                 <div class="sidebar">
-                    <div class="box text-center mb-5" id="support-box-1">
+                    <div class="box text-center mb-5">
                         <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
                         <div class="support-buttons justify-content-center justify-content-xl-between">
-                            <div class="support-button selected" data-amount="5">
+                            <div class="support-button" data-amount="5">
                                 <img src="{% static 'images/support1.svg' %}" alt="doniraj ikona">
                                 <span>5 EUR</span>
                             </div>
@@ -127,7 +175,7 @@
                 <h1 class="modal-title text-uppercase">{{ page.title }}</h1>
                 <h3 class="text-uppercase">{{ page.organization }}</h3>
                 <div class="support-buttons justify-content-center justify-content-xl-between">
-                    <div class="support-button selected" data-amount="5">
+                    <div class="support-button" data-amount="5">
                         <img src="{% static 'images/support1.svg' %}" alt="doniraj ikona">
                         <span>5 EUR</span>
                     </div>
