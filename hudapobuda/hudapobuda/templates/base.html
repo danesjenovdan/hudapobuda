@@ -9,7 +9,6 @@
         {% with self.get_site.site_name as site_name %}
             <title>
                 {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-                {% if site_name %}- {{ site_name }}{% endif %}
             </title>
             <meta property="og:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ settings.home.MetaSettings.meta_title }}{% endif %}">
             <meta name="twitter:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ settings.home.MetaSettings.meta_title }}{% endif %}">
@@ -21,8 +20,9 @@
         <meta name="twitter:description" content="{% if self.search_description %}{{ self.search_description }}{% else %}{{ settings.home.MetaSettings.meta_description }}{% endif %}">
 
         {% image settings.home.MetaSettings.meta_image max-1200x630 as og_image %}
-        <meta property="og:image" content="{{ og_image.url }}">
-        <meta name="twitter:image" content="{{ og_image.url }}">
+        {% image self.meta_image max-1200x630 as og_image_site %}
+        <meta property="og:image" content="{% if og_image_site %}{{ og_image_site.url }}{% else %}{{ og_image.url }}{% endif %}">
+        <meta name="twitter:image" content="{% if og_image_site %}{{ og_image_site.url }}{% else %}{{ og_image.url }}{% endif %}">
 
         <meta name="author" content="Danes je nov dan">
         <meta property="og:type" content="website">

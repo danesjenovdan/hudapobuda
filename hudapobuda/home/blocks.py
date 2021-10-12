@@ -248,6 +248,7 @@ class ContentBlock(blocks.StreamBlock):
             label=_('Tretja kartica'),
             ))
         ],
+        label=_('Sekcija s pobudami'),
         template='home/blocks/initiatives_section.html',
         icon='title',
     )

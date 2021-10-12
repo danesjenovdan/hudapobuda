@@ -201,6 +201,13 @@ class InitiativePage(Page):
     share_box_mail = models.TextField(
         verbose_name=_('Delitev - besedilo maila'),
     )
+    meta_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
 
     def get_context(self, request):
         context = super().get_context(request)
@@ -222,6 +229,7 @@ class InitiativePage(Page):
         FieldPanel('share_box_url'),
         FieldPanel('share_box_tw'),
         FieldPanel('share_box_mail'),
+        ImageChooserPanel('meta_image'),
     ]
 
 
