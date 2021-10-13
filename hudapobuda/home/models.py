@@ -198,6 +198,9 @@ class InitiativePage(Page):
     share_box_tw = models.TextField(
         verbose_name=_('Delitev - besedilo twitter objave'),
     )
+    share_box_mail_subject = models.TextField(
+        verbose_name=_('Delitev - zadeva maila'),
+    )
     share_box_mail = models.TextField(
         verbose_name=_('Delitev - besedilo maila'),
     )
@@ -228,6 +231,7 @@ class InitiativePage(Page):
         FieldPanel('share_box_title'),
         FieldPanel('share_box_url'),
         FieldPanel('share_box_tw'),
+        FieldPanel('share_box_mail_subject'),
         FieldPanel('share_box_mail'),
         ImageChooserPanel('meta_image'),
     ]

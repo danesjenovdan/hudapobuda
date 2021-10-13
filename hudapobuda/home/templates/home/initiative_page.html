@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="text-uppercase">{{ page.title }}</h1>
-                <h3 class="text-uppercase">{{ page.organization }}</h3>
+                <h3 class="text-uppercase"><a href="{{ page.organization_url }}" target="_blank">{{ page.organization }}</a></h3>
             </div>
         </div>
         <div class="row">
@@ -20,8 +20,8 @@
                 {% image page.image width-1444 class="img-fluid w-100" %}
             </div>
             <div class="col-12 col-lg-4 initiative-info" data-donation-id="{{ page.donation_ID }}">
-                <p><span class="highlighted count">0</span> podpornikov</p>
-                <p>še <span class="highlighted days">{{ days_left }}</span> dni do zaključka</p>
+                <p><span class="highlighted count">0</span> <span class="count-text">podpornikov</span></p>
+                <p>še <span class="highlighted days">{{ days_left }}</span> <span class="days-text">dni</span> do zaključka</p>
                 <div class="">
                     <div class="badge-initiative">
                         <p>Zbranih <br><strong><span class="amount">5</span> €</strong> od <br><strong>5000 €</strong>.</p>
@@ -153,11 +153,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">PODPRI POBUDO</h5>
+                <h5 class="modal-title">PODPRI HUDO POBUDO!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                <iframe id="donation-frame" src="/" height="600" width="100%" title="description"></iframe>
+                <iframe id="donation-frame" src="/" height="730" width="100%" title="description"></iframe>
             </div>
         </div>
     </div>
@@ -168,7 +168,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">PODPRI POBUDO</h5>
+                <h5 class="modal-title">PODPRI HUDO POBUDO!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -221,6 +221,7 @@
 {% include "home/includes/footer.html" %}
 
 <script>
+    window.SHARE_EMAIL_SUBJECT = "{{ page.share_box_mail_subject|escapejs }}";
     window.SHARE_EMAIL_TEXT = "{{ page.share_box_mail|escapejs }}";
     window.SHARE_TWEET_TEXT = "{{ page.share_box_tw|escapejs }}";
 </script>
