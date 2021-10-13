@@ -197,12 +197,18 @@ class InitiativePage(Page):
     )
     share_box_tw = models.TextField(
         verbose_name=_('Delitev - besedilo twitter objave'),
+        null=True,
+        blank=True,
     )
     share_box_mail_subject = models.TextField(
         verbose_name=_('Delitev - zadeva maila'),
+        null=True,
+        blank=True,
     )
     share_box_mail = models.TextField(
         verbose_name=_('Delitev - besedilo maila'),
+        null=True,
+        blank=True,
     )
     meta_image = models.ForeignKey(
         'wagtailimages.Image',
