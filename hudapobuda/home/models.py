@@ -190,10 +190,6 @@ class InitiativePage(Page):
         verbose_name=_('Škatla za delitev - naslov'),
         max_length=255,
     )
-    share_box_button_text = models.CharField(
-        verbose_name=_('Škatla za delitev - besedilo na gumbu'),
-        max_length=255,
-    )
     share_box_url = models.URLField(
         verbose_name=_('URL za deljenje'),
         null=True,
@@ -201,9 +197,25 @@ class InitiativePage(Page):
     )
     share_box_tw = models.TextField(
         verbose_name=_('Delitev - besedilo twitter objave'),
+        null=True,
+        blank=True,
+    )
+    share_box_mail_subject = models.TextField(
+        verbose_name=_('Delitev - zadeva maila'),
+        null=True,
+        blank=True,
     )
     share_box_mail = models.TextField(
         verbose_name=_('Delitev - besedilo maila'),
+        null=True,
+        blank=True,
+    )
+    meta_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
     )
 
     def get_context(self, request):
@@ -223,10 +235,11 @@ class InitiativePage(Page):
         FieldPanel('support_box_title'),
         FieldPanel('support_box_button_text'),
         FieldPanel('share_box_title'),
-        FieldPanel('share_box_button_text'),
         FieldPanel('share_box_url'),
         FieldPanel('share_box_tw'),
+        FieldPanel('share_box_mail_subject'),
         FieldPanel('share_box_mail'),
+        ImageChooserPanel('meta_image'),
     ]
 
 

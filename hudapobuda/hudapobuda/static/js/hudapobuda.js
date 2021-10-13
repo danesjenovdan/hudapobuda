@@ -64,7 +64,7 @@
         window.open(url, '_blank');
       }
       if (event.currentTarget.className.indexOf('isembox') != -1) {
-        const url = `mailto:?subject=HUDA+POBUDA&body=${encodeURIComponent(window.SHARE_EMAIL_TEXT)}`;
+        const url = `mailto:?subject=${encodeURIComponent(window.SHARE_EMAIL_SUBJECT)}&body=${encodeURIComponent(window.SHARE_EMAIL_TEXT)}`;
         window.open(url, '_blank');
       }
     });
@@ -94,7 +94,11 @@
       .then(response => response.json())
       .then(data => {
         card.querySelector('.amount').textContent = data['donation-amount']
-        card.querySelector('.progress-bar').style.width = (parseInt(data['donation-amount']) / 5000 * 100) + '%'
+        const progressBarWidth = Math.round(parseInt(data['donation-amount']) / 5000 * 100)
+        if (progressBarWidth > 0) {
+          card.querySelector('.progress-bar').style.width = progressBarWidth + '%'
+          card.querySelector('.progress-bar').style.display = 'block'
+        }
       });
   })
 })();
@@ -106,6 +110,19 @@ let modalMobileDonations;
 (function () {
   const initiative_info = document.querySelector('.headline-initiative .initiative-info');
   if (initiative_info) {
+    const podporniki = {
+      0: 'podpornikov',
+      1: 'podpornik',
+      2: 'podpornika',
+      3: 'podporniki',
+      4: 'podporniki',
+    }
+
+    // dnevi
+    const days = parseInt(initiative_info.querySelector('.days').textContent)
+    if (days === 1) {
+      initiative_info.querySelector('.days-text').textContent = 'dan'
+    }
     donation_id = initiative_info.getAttribute('data-donation-id');
     fetch(`https://podpri.djnd.si/api/donation-statistics/${donation_id}/`)
       .then(response => response.json())
@@ -113,8 +130,15 @@ let modalMobileDonations;
         const amount = parseInt(data['donation-amount'])
         const count = parseInt(data['donation-count'])
         initiative_info.querySelector('.amount').textContent = `${amount}`
-        initiative_info.querySelector('.progress-bar').style.width = (amount / 5000 * 100) + '%'
+        const progressBarWidth = Math.round(amount / 5000 * 100)
+        if (progressBarWidth > 0) {
+          initiative_info.querySelector('.progress-bar').style.width = progressBarWidth + '%'
+          initiative_info.querySelector('.progress-bar').style.display = 'block'
+        }
         initiative_info.querySelector('.count').textContent = `${count}`
+        if (count < 5) {
+          initiative_info.querySelector('.count-text').textContent = podporniki[count]
+        }
       });
   }
 })();
@@ -139,6 +163,9 @@ let modalMobileDonations;
         target = target.parentNode;
       }
       target.classList.add('selected');
+      if (!target.querySelector('input')) {
+        setDonationLink();
+      }
     })
   })
 })();
