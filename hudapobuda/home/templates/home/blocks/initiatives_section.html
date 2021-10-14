@@ -1,14 +1,14 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 <div class="initiatives-section col-lg-4 mb-4 mb-lg-0 d-flex">
-    <div class="box d-flex flex-column" data-donation-id="{{value.card1.donation_ID }}" onclick="window.location.href = '{% if value.card1.page %}{% pageurl value.card1.page %}{% endif %}'">
+    <a href="{% if value.card1.page %}{% pageurl value.card1.page %}{% endif %}" class="box d-flex flex-column" data-donation-id="{{ value.card1.donation_ID }}">
         <div>
             {% image value.card1.image width-1100 class="img-fluid w-100" %}
         </div>
         <div class="box-body flex-grow-1 d-flex flex-column justify-content-between">
             <div>
                 <h4>{{ value.card1.title }}</h4>
-                <h6><a href="{{ value.card1.author_url }}" target="_blank">{{ value.card1.author }}</a></h6>
+                <h6>{{ value.card1.author }}</h6>
                 <p>{{ value.card1.description }}</p>
             </div>
             <div>
@@ -20,17 +20,17 @@
                 <button class="btn btn-primary w-100">{{ value.card1.button_text }}</button>
             </div>
         </div>
-    </div>
+    </a>
 </div>
 <div class="initiatives-section col-lg-4 mb-4 mb-lg-0 d-flex">
-    <div class="box d-flex flex-column" data-donation-id="{{value.card2.donation_ID }}" onclick="window.location.href = '{% if value.card2.page %}{% pageurl value.card2.page %}{% endif %}'">
+    <a href="{% if value.card2.page %}{% pageurl value.card2.page %}{% endif %}" class="box d-flex flex-column" data-donation-id="{{ value.card2.donation_ID }}">
         <div>
             {% image value.card2.image width-1100 class="img-fluid w-100" %}
         </div>
         <div class="box-body flex-grow-1 d-flex flex-column justify-content-between">
             <div>
                 <h4>{{ value.card2.title }}</h4>
-                <h6><a href="{{ value.card2.author_url }}" target="_blank">{{ value.card2.author }}</a></h6>
+                <h6>{{ value.card2.author }}</h6>
                 <p>{{ value.card2.description }}</p>
             </div>
             <div>
@@ -42,17 +42,17 @@
                 <button class="btn btn-primary w-100">{{ value.card2.button_text }}</button>
             </div>
         </div>
-    </div>
+    </a>
 </div>
 <div class="initiatives-section col-lg-4 d-flex">
-    <div class="box d-flex flex-column" data-donation-id="{{value.card3.donation_ID }}" onclick="window.location.href = '{% if value.card3.page %}{% pageurl value.card3.page %}{% endif %}'">
+    <a href="{% if value.card3.page %}{% pageurl value.card3.page %}{% endif %}" class="box d-flex flex-column" data-donation-id="{{ value.card3.donation_ID }}">
         <div>
             {% image value.card3.image width-1100 class="img-fluid w-100" %}
         </div>
         <div class="box-body flex-grow-1 d-flex flex-column justify-content-between">
             <div>
                 <h4>{{ value.card3.title }}</h4>
-                <h6><a href="{{ value.card3.author_url }}" target="_blank">{{ value.card3.author }}</a></h6>
+                <h6>{{ value.card3.author }}</h6>
                 <p>{{ value.card3.description }}</p>
             </div>
             <div>
@@ -64,6 +64,6 @@
                 <button class="btn btn-primary w-100">{{ value.card3.button_text }}</button>
             </div>
         </div>
-    </div>
+    </a>
 </div>
 

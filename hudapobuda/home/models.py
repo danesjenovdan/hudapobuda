@@ -122,6 +122,10 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    hide_header = models.BooleanField(
+        verbose_name=_('Skrij naslovno sekcijo'),
+        default=False
+    )
     body = StreamField(
         [('section', SectionBlock())],
         verbose_name=_('Vsebina'),
@@ -131,6 +135,7 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('subtitle'),
         ImageChooserPanel('image'),
+        FieldPanel('hide_header'),
         StreamFieldPanel('body'),
     ]
 
