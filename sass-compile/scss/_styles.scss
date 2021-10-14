@@ -422,6 +422,9 @@ input[type="number"] {
 }
 
 .initiatives-section {
+  a {
+    text-decoration: none;
+  }
   .box {
     margin: 0 0.5rem;
     &:hover {
@@ -799,6 +802,18 @@ footer {
     font-size: 1.25rem;
     font-weight: 700;
     padding: 0.5rem 0;
+  }
+}
+
+#modal-iframe iframe {
+  height: 850px;
+
+  @media (min-width: 576px) {
+    height: 800px;
+  }
+
+  @media (min-width: 768px) {
+    height: 700px;
   }
 }
 
