@@ -21,7 +21,11 @@
             </div>
             <div class="col-12 col-lg-4 px-4 px-lg-3 initiative-info" data-donation-id="{{ page.donation_ID }}">
                 <p><span class="highlighted count">0</span> <span class="count-text">podpornikov</span></p>
+                {% if days_left > 0 %}
                 <p>še <span class="highlighted days">{{ days_left }}</span> <span class="days-text">dni</span> do zaključka</p>
+                {% else %}
+                <h4 class="mt-2">KONEC KAMPANJE</h4>
+                {% endif %}
                 <div class="">
                     <div class="badge-initiative">
                         <p>Zbranih <br><strong><span class="amount">5</span> €</strong> od <br><strong>5000 €</strong>.</p>

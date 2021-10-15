@@ -123,9 +123,11 @@ let modalMobileDonations;
     }
 
     // dnevi
-    const days = parseInt(initiative_info.querySelector('.days').textContent)
-    if (days === 1) {
-      initiative_info.querySelector('.days-text').textContent = 'dan'
+    if (initiative_info.querySelector('.days')) {
+      const days = parseInt(initiative_info.querySelector('.days').textContent)
+      if (days === 1) {
+        initiative_info.querySelector('.days-text').textContent = 'dan'
+      }
     }
     donation_id = initiative_info.getAttribute('data-donation-id');
     fetch(`https://podpri.djnd.si/api/donation-statistics/${donation_id}/`)
@@ -193,7 +195,7 @@ function setDonationLink() {
     donation_amount = selected_support_button.getAttribute('data-amount');
   }
   if (donation_amount && donation_id) {
-    document.getElementById('donation-frame').setAttribute('src', `https://nov.djnd.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
+    document.getElementById('donation-frame').setAttribute('src', `https://danesjenovdan.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
     modalMobileDonations.hide();
     modalIFrame.show();
   }
