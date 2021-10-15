@@ -234,12 +234,13 @@ input[type="number"] {
   -webkit-animation: demo-1 20s linear infinite;
   animation: demo-1 20s linear infinite;
 
+
   &:last-child {
-    /* Starting position */
+    // Starting position
     -moz-transform: translateX(100%);
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
-    animation-delay: 10s;
+    animation-delay: -10s;
   }
 
   h2 {
@@ -813,7 +814,7 @@ footer {
   }
 
   @media (min-width: 768px) {
-    height: 700px;
+    height: 730px;
   }
 }
 
@@ -860,4 +861,14 @@ footer {
   background-repeat: no-repeat;
   background-size: auto;
   opacity: 1;
+}
+
+.newsletter, .newsletter-page {
+  .btn {
+    margin: 0;
+  }
+  #response {
+    color: $primary;
+    font-weight: 700;
+  }
 }

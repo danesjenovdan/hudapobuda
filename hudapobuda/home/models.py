@@ -248,6 +248,47 @@ class InitiativePage(Page):
     ]
 
 
+class NewsletterPage(Page):
+    description = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Opis"),
+    )
+    body = RichTextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Vsebina'),
+    )
+    newsletter_label = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Tekst nad poljem za vnos maila"),
+    )
+    newsletter_button = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Gumb"),
+    )
+    newsletter_checkbox = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Tekst ob checkboxu"),
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("body"),
+        FieldPanel("newsletter_label"),
+        FieldPanel("newsletter_button"),
+        FieldPanel("newsletter_checkbox"),
+
+    ]
+
+    class Meta:
+        verbose_name = "Urejanje naročnine"
+        verbose_name_plural = "Urejanja naročnin"
+
+
 class StaticHeading(forms.Widget):
     pass
 

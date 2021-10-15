@@ -63,6 +63,10 @@
         const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.SHARE_TWEET_TEXT + ' https://hudapobuda.si')}`;
         window.open(url, '_blank');
       }
+      if (event.currentTarget.className.indexOf('istwinitiative') != -1) {
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.SHARE_TWEET_TEXT + ' ' + window.location.href)}`;
+        window.open(url, '_blank');
+      }
       if (event.currentTarget.className.indexOf('isembox') != -1) {
         const url = `mailto:?subject=${encodeURIComponent(window.SHARE_EMAIL_SUBJECT)}&body=${encodeURIComponent(window.SHARE_EMAIL_TEXT)}`;
         window.open(url, '_blank');
@@ -146,8 +150,15 @@ let modalMobileDonations;
 // donations
 (function () {
   // modal
-  modalIFrame = new bootstrap.Modal(document.getElementById('modal-iframe'), { show: false });
-  modalMobileDonations = new bootstrap.Modal(document.getElementById('modal-mobile-donations'), { show: false });
+  const modalIFrameElement = document.getElementById('modal-iframe')
+  if (modalIFrameElement) {
+    modalIFrame = new bootstrap.Modal(modalIFrameElement, { show: false });
+  }
+  const modalMobileDonationsElement = document.getElementById('modal-mobile-donations')
+  if (modalMobileDonationsElement) {
+    modalMobileDonations = new bootstrap.Modal(modalMobileDonationsElement, { show: false });
+  }
+
   const support_buttons = document.querySelectorAll('.support-button');
   support_buttons.forEach(function (sb) {
     sb.addEventListener('click',(event) => {
