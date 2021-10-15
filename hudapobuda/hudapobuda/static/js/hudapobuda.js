@@ -195,7 +195,7 @@ function setDonationLink() {
     donation_amount = selected_support_button.getAttribute('data-amount');
   }
   if (donation_amount && donation_id) {
-    document.getElementById('donation-frame').setAttribute('src', `https://nov.djnd.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
+    document.getElementById('donation-frame').setAttribute('src', `https://danesjenovdan.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
     modalMobileDonations.hide();
     modalIFrame.show();
   }
