@@ -9,4 +9,4 @@ resources:
 images:
   - name: hudapobuda-staging
     newName: rg.fr-par.scw.cloud/djnd/hudapobuda-staging
-    newTag: 'e1bddbc8884ac7b4967ceff91359b328329199e6'
+    newTag: '42110522744f6ea43f9472cd830e3ac56ffa2f8b'
