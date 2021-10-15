@@ -17,7 +17,7 @@
   </section>
 </div>
 
-<div class="bg-section ">
+<div class="bg-section flex-grow-1">
   <section class="container">
     <div class="row newsletter-page">
       <div class="col-12 col-lg-8">
@@ -31,7 +31,7 @@
           </div>
           <div class="col manage">
             <div class="footer-col">
-              <h5 class="text-uppercase">{{ page.newsletter_label }}</h5>
+              <h5>{{ page.newsletter_label }}</h5>
               <div class="my-4">
                 <div class="input-group text-center">
                   <input type="email" class="form-control" id="managed-email" name="email" required>
@@ -57,6 +57,9 @@
 
 {% block extra_js %}
 <script>
+window.NEWSLETTER_KEY = "{{ page.newsletter_key|escapejs }}";
+window.NEWSLETTER_ID = "{{ page.newsletter_id|escapejs }}";
+
 (function () {
   const form = document.getElementById('newsletter-page-form');
   const emailElem = document.getElementById('managed-email');
@@ -67,7 +70,7 @@
 
   // delete subscription
   subscription.addEventListener('click', function () {
-    const reqUrl = `https://podpri.djnd.si/api/segments/huda-pobuda/contact/?email=${urlParams.get('email')}&token=${urlParams.get('token')}`;
+    const reqUrl = `https://podpri.djnd.si/api/segments/${window.NEWSLETTER_KEY}/contact/?email=${urlParams.get('email')}&token=${urlParams.get('token')}`;
     fetch(reqUrl, {
       method: 'DELETE',
     }).then((response) => {
@@ -88,7 +91,7 @@
         },
         body: JSON.stringify({
           email: emailElem.value,
-          segment: 17,
+          segment: parseInt(window.NEWSLETTER_ID),
         }),
       })
       .then((res) => {
@@ -122,7 +125,7 @@
     fetch(endpoint).then((response) => {
       return response.json();
     }).then((json) => {
-      if (json.segments.filter((segment) => segment.id === 17).length > 0) {
+      if (json.segments.filter((segment) => segment.id === parseInt(window.NEWSLETTER_ID)).length > 0) {
         subscription.textContent = 'Odjavi se od prejemanja e-novičnika';
         subscription.disabled = false;
       } else {

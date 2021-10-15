@@ -11,7 +11,11 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-//
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 .hero,
 .header,
@@ -870,5 +874,8 @@ footer {
   #response {
     color: $primary;
     font-weight: 700;
+  }
+  h5 {
+    font-family: $font-family-sans-serif;
   }
 }
