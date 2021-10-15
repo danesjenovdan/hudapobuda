@@ -274,6 +274,16 @@ class NewsletterPage(Page):
         blank=True,
         verbose_name=_("Tekst ob checkboxu"),
     )
+    newsletter_key = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Mautic key"),
+    )
+    newsletter_id = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_("Mautic ID"),
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("description"),
@@ -281,7 +291,8 @@ class NewsletterPage(Page):
         FieldPanel("newsletter_label"),
         FieldPanel("newsletter_button"),
         FieldPanel("newsletter_checkbox"),
-
+        FieldPanel("newsletter_key"),
+        FieldPanel("newsletter_id"),
     ]
 
     class Meta:
