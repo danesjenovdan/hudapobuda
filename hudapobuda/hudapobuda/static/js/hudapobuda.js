@@ -123,9 +123,11 @@ let modalMobileDonations;
     }
 
     // dnevi
-    const days = parseInt(initiative_info.querySelector('.days').textContent)
-    if (days === 1) {
-      initiative_info.querySelector('.days-text').textContent = 'dan'
+    if (initiative_info.querySelector('.days')) {
+      const days = parseInt(initiative_info.querySelector('.days').textContent)
+      if (days === 1) {
+        initiative_info.querySelector('.days-text').textContent = 'dan'
+      }
     }
     donation_id = initiative_info.getAttribute('data-donation-id');
     fetch(`https://podpri.djnd.si/api/donation-statistics/${donation_id}/`)
