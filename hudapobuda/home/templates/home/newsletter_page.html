@@ -26,8 +26,8 @@
         </div>
 
         <form id="newsletter-page-form" class="row mb-5">
-          <div class="col unsubscribe" style="text-align: center;">
-            <button disabled class="btn btn-background subscription">Nalagamo tvoje nastavitve ...</button>
+          <div class="col unsubscribe">
+            <button disabled class="btn btn-primary subscription">Nalagamo tvoje nastavitve ...</button>
           </div>
           <div class="col manage">
             <div class="footer-col">
@@ -74,7 +74,7 @@
       return response.json();
     }).then((json) => {
       console.log(json);
-      response.text("Odjava je bila uspešna.");
+      response.textContent = "Odjava je bila uspešna.";
     });
   });
 
@@ -88,7 +88,7 @@
         },
         body: JSON.stringify({
           email: emailElem.value,
-          segment: 20,
+          segment: 17,
         }),
       })
       .then((res) => {
@@ -98,17 +98,17 @@
         throw new Error("Response not ok");
       })
       .then((res) => {
-        response.attr('class', 'form-text text-start');
+        response.setAttribute('class', 'form-text text-start');
         response.textContent = 'Hvala za prijavo!';
       })
       .catch((error) => {
-        response.attr('class', 'form-text text-start text-error');
+        response.setAttribute('class', 'form-text text-start text-error');
         response.textContent = 'Napaka pri prijavi :(';
       })
       .then(() => {
-        submitButton.prop("disabled", false);
-        emailElem.prop("disabled", false);
-        checkbox.prop("disabled", false);
+        submitButton.disabled = false;
+        emailElem.disabled = false;
+        checkbox.disabled = false;
       });
     } else {
       form.classList.add("error");
@@ -122,12 +122,11 @@
     fetch(endpoint).then((response) => {
       return response.json();
     }).then((json) => {
-      if (json.segments.filter((segment) => segment.id === 20).length > 0) {
+      if (json.segments.filter((segment) => segment.id === 17).length > 0) {
         subscription.textContent = 'Odjavi se od prejemanja e-novičnika';
-        subscription.prop("disabled", false);
+        subscription.disabled = false;
       } else {
         document.querySelector('.unsubscribe').style.display = 'none';
-        console.log(document.querySelector('.unsubscribe'))
         document.querySelector('.manage').style.display = 'block';
         document.getElementById('managed-email').focus();
       }
