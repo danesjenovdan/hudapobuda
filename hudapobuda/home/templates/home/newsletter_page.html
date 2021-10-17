@@ -1,0 +1,143 @@
+{% extends "home/base_page.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}page page--content{% endblock %}
+
+{% block page_body %}
+<div class="bg-section bg-section--pink">
+  <section class="container">
+    <div class="hero position-relative">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="my-4 text-uppercase">{{ page.title }}</h1>
+          {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="bg-section flex-grow-1">
+  <section class="container">
+    <div class="row newsletter-page">
+      <div class="col-12 col-lg-8">
+        <div class="row mb-5">
+          {{ page.body|richtext }}
+        </div>
+
+        <form id="newsletter-page-form" class="row mb-5">
+          <div class="col unsubscribe">
+            <button disabled class="btn btn-primary subscription">Nalagamo tvoje nastavitve ...</button>
+          </div>
+          <div class="col manage">
+            <div class="footer-col">
+              <h5>{{ page.newsletter_label }}</h5>
+              <div class="my-4">
+                <div class="input-group text-center">
+                  <input type="email" class="form-control" id="managed-email" name="email" required>
+                  <button id="submit-managed-email" class="btn btn-primary" type="button">{{ page.newsletter_button }}</button>
+                </div>
+                <label for="confirm-managed-email" class="checkbox-wrapper text-start">
+                  <input type="checkbox" id="confirm-managed-email" name="confirm-managed-email" class="form-check-input" required>
+                  <span>{{ page.newsletter_checkbox }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-text" id="response"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+window.NEWSLETTER_KEY = "{{ page.newsletter_key|escapejs }}";
+window.NEWSLETTER_ID = "{{ page.newsletter_id|escapejs }}";
+
+(function () {
+  const form = document.getElementById('newsletter-page-form');
+  const emailElem = document.getElementById('managed-email');
+  const submitButton = document.getElementById('submit-managed-email');
+  const checkbox = document.getElementById('confirm-managed-email');
+  const response = document.getElementById('response');
+  const subscription = document.querySelector('.subscription');
+
+  // delete subscription
+  subscription.addEventListener('click', function () {
+    const reqUrl = `https://podpri.djnd.si/api/segments/${window.NEWSLETTER_KEY}/contact/?email=${urlParams.get('email')}&token=${urlParams.get('token')}`;
+    fetch(reqUrl, {
+      method: 'DELETE',
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      console.log(json);
+      response.textContent = "Odjava je bila uspešna.";
+    });
+  });
+
+  // submit email and subscribe
+  submitButton.addEventListener('click', function () {
+    if (document.getElementById('confirm-managed-email').checked) {
+      fetch("https://podpri.djnd.si/api/subscribe/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailElem.value,
+          segment: parseInt(window.NEWSLETTER_ID),
+        }),
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.text();
+        }
+        throw new Error("Response not ok");
+      })
+      .then((res) => {
+        response.setAttribute('class', 'form-text text-start');
+        response.textContent = 'Hvala za prijavo!';
+      })
+      .catch((error) => {
+        response.setAttribute('class', 'form-text text-start text-error');
+        response.textContent = 'Napaka pri prijavi :(';
+      })
+      .then(() => {
+        submitButton.disabled = false;
+        emailElem.disabled = false;
+        checkbox.disabled = false;
+      });
+    } else {
+      form.classList.add("error");
+    }
+  })
+
+  const urlParams = new URLSearchParams(document.location.search);
+  if (urlParams.has('token') && urlParams.has('email')) {
+    document.querySelector('.manage').style.display = 'none';
+    const endpoint = `https://podpri.djnd.si/api/segments/my?token=${urlParams.get('token')}&email=${urlParams.get('email')}`;
+    fetch(endpoint).then((response) => {
+      return response.json();
+    }).then((json) => {
+      if (json.segments.filter((segment) => segment.id === parseInt(window.NEWSLETTER_ID)).length > 0) {
+        subscription.textContent = 'Odjavi se od prejemanja e-novičnika';
+        subscription.disabled = false;
+      } else {
+        document.querySelector('.unsubscribe').style.display = 'none';
+        document.querySelector('.manage').style.display = 'block';
+        document.getElementById('managed-email').focus();
+      }
+    });
+  } else {
+    document.querySelector('.unsubscribe').style.display = 'none';
+  }
+})();
+
+</script>
+{% endblock %}

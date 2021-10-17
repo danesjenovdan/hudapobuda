@@ -7,6 +7,7 @@
 
 {% include "home/includes/header.html" with show_logo=False %}
 
+{% if not page.hide_header %}
 <div class="bg-section bg-section--white">
     <header class="container">
         <div class="row hero align-items-center">
@@ -20,6 +21,7 @@
         </div>
     </header>
 </div>
+{% endif %}
 
 {% for block in page.body %}
     {% include_block block %}
