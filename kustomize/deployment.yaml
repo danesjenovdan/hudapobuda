@@ -76,6 +76,8 @@ spec:
             - 0.0.0.0:8000
             - --log-level
             - DEBUG
+            - --timeout
+            - 20
           ports:
             - containerPort: 8000
           envFrom:
@@ -87,10 +89,10 @@ spec:
           resources:
             requests:
               memory: 500Mi
-              cpu: 100m
+              cpu: 200m
             limits:
               memory: 500Mi
-              cpu: 100m
+              cpu: 200m
         - name: hudapobuda-nginx
           ports:
             - name: http
