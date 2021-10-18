@@ -59,6 +59,10 @@
         const url = `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhudapobuda.si`;
         window.open(url, 'pop', 'width=600, height=400, scrollbars=no');
       }
+      if (event.currentTarget.className.indexOf('isfbinitiative') != -1) {
+        const url = `https://www.facebook.com/dialog/feed?app_id=831312620809085&redirect_uri=https%3A%2F%2Fhudapobuda.si&link=${encodeURIComponent(window.location.href)}&ref=responsive`;
+        window.open(url, '_blank');
+      }
       if (event.currentTarget.className.indexOf('istwbox') != -1) {
         const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.SHARE_TWEET_TEXT + ' https://hudapobuda.si')}`;
         window.open(url, '_blank');
