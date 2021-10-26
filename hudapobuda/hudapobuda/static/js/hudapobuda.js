@@ -199,6 +199,26 @@ function setDonationLink() {
     donation_amount = selected_support_button.getAttribute('data-amount');
   }
   if (donation_amount && donation_id) {
+    let project = '';
+    switch(parseInt(donation_id, 10)) {
+      case 6:
+        project = 'Pušča, na pomoč';
+        break;
+      case 7:
+        project = 'Skupnostni studio, glas skupnosti';
+        break;
+      case 8:
+        project = 'Zapišimo spomine';
+        break;
+    }
+    try {
+      plausible('Donated', {
+        props: {
+          amount: donation_amount,
+          project: dontaion_id,
+        },
+      });
+    } catch (error) {}
     document.getElementById('donation-frame').setAttribute('src', `https://danesjenovdan.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
     modalMobileDonations.hide();
     modalIFrame.show();
