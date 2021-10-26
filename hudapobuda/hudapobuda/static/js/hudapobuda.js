@@ -215,10 +215,13 @@ function setDonationLink() {
       plausible('Donated', {
         props: {
           amount: donation_amount,
-          project: dontaion_id,
+          project: donation_id,
         },
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log('Something went wrong with Plausible.');
+      console.log(error);
+    }
     document.getElementById('donation-frame').setAttribute('src', `https://danesjenovdan.si/doniraj_hudapobuda/placaj?amount=${donation_amount}&campaign=${donation_id}`);
     modalMobileDonations.hide();
     modalIFrame.show();
