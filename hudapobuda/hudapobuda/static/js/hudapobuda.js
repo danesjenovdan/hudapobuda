@@ -215,7 +215,7 @@ function setDonationLink() {
       plausible('Donated', {
         props: {
           amount: donation_amount,
-          project: donation_id,
+          project: project,
         },
       });
     } catch (error) {
