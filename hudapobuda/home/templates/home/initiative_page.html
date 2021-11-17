@@ -47,6 +47,7 @@
                     <div class="col-12">
                         {{ page.body|richtext }}
                     </div>
+                    {% if not page.hide_donations %}
                     <div class="col-12 bottom-donate-bar d-none d-lg-block">
                         <div class="box text-center my-5">
                             <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
@@ -91,10 +92,12 @@
                             <button class="btn btn-primary mt-3" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-4 d-none d-lg-block">
                 <div class="sidebar">
+                    {% if not page.hide_donations %}
                     <div class="box text-center mb-5">
                         <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
                         <div class="support-buttons justify-content-center justify-content-xl-between">
@@ -125,6 +128,7 @@
                         </div>
                         <button class="btn btn-primary mt-3 w-100" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
                     </div>
+                    {% endif %}
                     <div class="box text-center">
                         <h3 class="text-uppercase mb-4">{{ page.share_box_title }}</h3>
                         <div class="url mb-4" onclick="selectLink(event)">{{ page.share_box_url }}</div>
@@ -152,6 +156,7 @@
     </div>
 </div>
 
+{% if not page.hide_donations %}
 <!-- Modal with iframe-->
 <div class="modal fade" id="modal-iframe" tabindex="-1" role="dialog" aria-labelledby="modal-iframe" aria-hidden="true" style="overflow-y: scroll;">
     <div class="modal-dialog">
@@ -220,7 +225,7 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 
 {% include "home/includes/footer.html" %}
 

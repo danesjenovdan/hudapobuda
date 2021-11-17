@@ -172,6 +172,7 @@ class InitiativePage(Page):
             (8, '8 - Zapišimo spomine')
         ]
     )
+    hide_donations = models.BooleanField(default=False, verbose_name=_('Skrij donacije?'),)
     image = models.ForeignKey(
         'wagtailimages.Image',
         verbose_name=_('Slika'),
@@ -235,6 +236,7 @@ class InitiativePage(Page):
         FieldPanel('organization_url'),
         FieldPanel('deadline'),
         FieldPanel('donation_ID'),
+        FieldPanel('hide_donations'),
         ImageChooserPanel('image'),
         FieldPanel('body'),
         FieldPanel('support_box_title'),
