@@ -19,21 +19,25 @@
             <div class="col-12 col-lg-8 px-4 px-lg-3 my-4 my-lg-0">
                 {% image page.image width-1444 class="img-fluid w-100" %}
             </div>
-            <div class="col-12 col-lg-4 px-4 px-lg-3 initiative-info" data-donation-id="{{ page.donation_ID }}">
+            <div class="col-12 col-lg-4 px-4 px-lg-3 initiative-info d-flex flex-column align-items-center align-items-lg-start justify-content-center" data-donation-id="{{ page.donation_ID }}">
                 <p><span class="highlighted count">0</span> <span class="count-text">podpornikov</span></p>
+                {% if not page.hide_donations %}
                 {% if days_left > 0 %}
                 <p>še <span class="highlighted days">{{ days_left }}</span> <span class="days-text">dni</span> do zaključka</p>
                 {% else %}
                 <h4 class="mt-2">KONEC KAMPANJE</h4>
                 {% endif %}
+                {% endif %}
                 <div class="">
                     <div class="badge-initiative">
-                        <p>Zbranih <br><strong><span class="amount">5</span> €</strong> od <br><strong>5000 €</strong>.</p>
+                        <p>Zbranih <br><strong><span class="amount">5</span> €</strong>{% if not page.hide_donations %} od <br><strong>5000 €</strong>{% endif %}.</p>
                     </div>
                 </div>
+                {% if not page.hide_donations %}
                 <div class="progress">
                     <span class="progress-bar"></span>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

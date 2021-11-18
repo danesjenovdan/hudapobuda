@@ -140,10 +140,11 @@ let modalMobileDonations;
         const amount = parseInt(data['donation-amount'])
         const count = parseInt(data['donation-count'])
         initiative_info.querySelector('.amount').textContent = `${amount}`
+        const progressBar = initiative_info.querySelector('.progress-bar');
         const progressBarWidth = Math.round(amount / 5000 * 100)
-        if (progressBarWidth > 0) {
-          initiative_info.querySelector('.progress-bar').style.width = progressBarWidth + '%'
-          initiative_info.querySelector('.progress-bar').style.display = 'block'
+        if (progressBar && progressBarWidth > 0) {
+          progressBar.style.width = progressBarWidth + '%'
+          progressBar.style.display = 'block'
         }
         initiative_info.querySelector('.count').textContent = `${count}`
         if (count < 5) {
