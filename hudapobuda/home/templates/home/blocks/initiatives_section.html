@@ -13,10 +13,14 @@
             </div>
             <div>
                 <hr />
+                {% if not value.hide_donations %}
                 <div class="progress">
                     <span class="progress-bar"></span>
                 </div>
-                <p>Zbranih <strong><span class="amount"></span> €</strong> od <strong>5000 €</strong>.</p>
+                {% endif %}
+                <p class="{% if value.hide_donations %}my-4 text-center{% endif %}">
+                    Zbranih <strong><span class="amount"></span> €</strong>{% if not value.hide_donations %} od <strong>5000 €</strong>{% endif %}.
+                </p>
                 <button class="btn btn-primary w-100">{{ value.card1.button_text }}</button>
             </div>
         </div>
@@ -35,10 +39,14 @@
             </div>
             <div>
                 <hr />
+                {% if not value.hide_donations %}
                 <div class="progress">
                     <span class="progress-bar"></span>
                 </div>
-                <p>Zbranih <strong><span class="amount"></span> €</strong> od <strong>5000 €</strong>.</p>
+                {% endif %}
+                <p class="{% if value.hide_donations %}my-4 text-center{% endif %}">
+                    Zbranih <strong><span class="amount"></span> €</strong>{% if not value.hide_donations %} od <strong>5000 €</strong>{% endif %}.
+                </p>
                 <button class="btn btn-primary w-100">{{ value.card2.button_text }}</button>
             </div>
         </div>
@@ -57,10 +65,14 @@
             </div>
             <div>
                 <hr />
+                {% if not value.hide_donations %}
                 <div class="progress">
                     <span class="progress-bar"></span>
                 </div>
-                <p>Zbranih <strong><span class="amount"></span> €</strong> od <strong>5000 €</strong>.</p>
+                {% endif %}
+                <p class="{% if value.hide_donations %}my-4 text-center{% endif %}">
+                    Zbranih <strong><span class="amount"></span> €</strong>{% if not value.hide_donations %} od <strong>5000 €</strong>{% endif %}.
+                </p>
                 <button class="btn btn-primary w-100">{{ value.card3.button_text }}</button>
             </div>
         </div>

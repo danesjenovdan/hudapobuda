@@ -199,6 +199,7 @@ class ContentBlock(blocks.StreamBlock):
     )
     initiative_boxes = blocks.StructBlock(
         [
+            ('hide_donations', blocks.BooleanBlock(label=_('Skrij donacije?'), default=False, null=True, required=False)),
             ('card1', blocks.StructBlock([
                 ('title', blocks.CharBlock(label=_('Ime pobude'))),
                 ('page', blocks.PageChooserBlock(

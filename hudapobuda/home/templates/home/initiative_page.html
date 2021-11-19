@@ -19,21 +19,25 @@
             <div class="col-12 col-lg-8 px-4 px-lg-3 my-4 my-lg-0">
                 {% image page.image width-1444 class="img-fluid w-100" %}
             </div>
-            <div class="col-12 col-lg-4 px-4 px-lg-3 initiative-info" data-donation-id="{{ page.donation_ID }}">
+            <div class="col-12 col-lg-4 px-4 px-lg-3 initiative-info d-flex flex-column align-items-center align-items-lg-start justify-content-center" data-donation-id="{{ page.donation_ID }}">
                 <p><span class="highlighted count">0</span> <span class="count-text">podpornikov</span></p>
+                {% if not page.hide_donations %}
                 {% if days_left > 0 %}
                 <p>še <span class="highlighted days">{{ days_left }}</span> <span class="days-text">dni</span> do zaključka</p>
                 {% else %}
                 <h4 class="mt-2">KONEC KAMPANJE</h4>
                 {% endif %}
+                {% endif %}
                 <div class="">
                     <div class="badge-initiative">
-                        <p>Zbranih <br><strong><span class="amount">5</span> €</strong> od <br><strong>5000 €</strong>.</p>
+                        <p>Zbranih <br><strong><span class="amount">5</span> €</strong>{% if not page.hide_donations %} od <br><strong>5000 €</strong>{% endif %}.</p>
                     </div>
                 </div>
+                {% if not page.hide_donations %}
                 <div class="progress">
                     <span class="progress-bar"></span>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -47,6 +51,7 @@
                     <div class="col-12">
                         {{ page.body|richtext }}
                     </div>
+                    {% if not page.hide_donations %}
                     <div class="col-12 bottom-donate-bar d-none d-lg-block">
                         <div class="box text-center my-5">
                             <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
@@ -91,10 +96,12 @@
                             <button class="btn btn-primary mt-3" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-4 d-none d-lg-block">
                 <div class="sidebar">
+                    {% if not page.hide_donations %}
                     <div class="box text-center mb-5">
                         <h3 class="text-uppercase mb-4">{{ page.support_box_title }}</h3>
                         <div class="support-buttons justify-content-center justify-content-xl-between">
@@ -125,6 +132,7 @@
                         </div>
                         <button class="btn btn-primary mt-3 w-100" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
                     </div>
+                    {% endif %}
                     <div class="box text-center">
                         <h3 class="text-uppercase mb-4">{{ page.share_box_title }}</h3>
                         <div class="url mb-4" onclick="selectLink(event)">{{ page.share_box_url }}</div>
@@ -152,6 +160,7 @@
     </div>
 </div>
 
+{% if not page.hide_donations %}
 <!-- Modal with iframe-->
 <div class="modal fade" id="modal-iframe" tabindex="-1" role="dialog" aria-labelledby="modal-iframe" aria-hidden="true" style="overflow-y: scroll;">
     <div class="modal-dialog">
@@ -220,7 +229,7 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 
 {% include "home/includes/footer.html" %}
 
