@@ -193,7 +193,7 @@ class InitiativePage(Page):
         max_length=255,
     )
     share_box_title = models.CharField(
-        verbose_name=_('Škatla za delitev - naslov'),
+        verbose_name=_('Škatla za deljenje - naslov'),
         max_length=255,
     )
     share_box_url = models.URLField(
@@ -202,17 +202,17 @@ class InitiativePage(Page):
         blank=True,
     )
     share_box_tw = models.TextField(
-        verbose_name=_('Delitev - besedilo twitter objave'),
+        verbose_name=_('Deljenje - besedilo twitter objave'),
         null=True,
         blank=True,
     )
     share_box_mail_subject = models.TextField(
-        verbose_name=_('Delitev - zadeva maila'),
+        verbose_name=_('Deljenje - zadeva maila'),
         null=True,
         blank=True,
     )
     share_box_mail = models.TextField(
-        verbose_name=_('Delitev - besedilo maila'),
+        verbose_name=_('Deljenje - besedilo maila'),
         null=True,
         blank=True,
     )
@@ -223,6 +223,7 @@ class InitiativePage(Page):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    hide_socials = models.BooleanField(default=False, verbose_name=_('Skrij škatlo za deljenje?'),)
 
     def get_context(self, request):
         context = super().get_context(request)
@@ -241,6 +242,7 @@ class InitiativePage(Page):
         FieldPanel('body'),
         FieldPanel('support_box_title'),
         FieldPanel('support_box_button_text'),
+        FieldPanel('hide_socials'),
         FieldPanel('share_box_title'),
         FieldPanel('share_box_url'),
         FieldPanel('share_box_tw'),
