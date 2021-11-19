@@ -46,7 +46,7 @@
 <div class="bg-section bg-section--light">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-8 body-initiative px-4 ps-lg-3 pe-lg-5 rich-text">
+            <div class="col-12 {% if page.hide_donations and page.hide_socials %} col-lg-10 offset-lg-1 {% else %} col-lg-8 {% endif %} body-initiative px-4 ps-lg-3 pe-lg-5 rich-text">
                 <div class="row">
                     <div class="col-12">
                         {{ page.body|richtext }}
@@ -133,6 +133,7 @@
                         <button class="btn btn-primary mt-3 w-100" type="button" onclick="setDonationLink()">{{ page.support_box_button_text }}</button>
                     </div>
                     {% endif %}
+                    {% if not page.hide_socials %}
                     <div class="box text-center">
                         <h3 class="text-uppercase mb-4">{{ page.share_box_title }}</h3>
                         <div class="url mb-4" onclick="selectLink(event)">{{ page.share_box_url }}</div>
@@ -154,6 +155,7 @@
                             </button>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
