@@ -3,3 +3,5 @@ wagtail>=2.13,<2.14
 psycopg2==2.8.6
 requests==2.25.1
 Wand
+django-storages
+boto3
