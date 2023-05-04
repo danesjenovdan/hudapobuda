@@ -10,11 +10,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - hudapobuda.si
-        - www.hudapobuda.si
+        - hudapobuda.djnd.si
+        - www.hudapobuda.djnd.si
       secretName: hudapobuda-tls
   rules:
-    - host: hudapobuda.si
+    - host: hudapobuda.djnd.si
       http:
         paths:
           - path: /
@@ -40,10 +40,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - files.hudapobuda.si
+        - files.hudapobuda.djnd.si
       secretName: hudapobuda-nginx-tls
   rules:
-    - host: files.hudapobuda.si
+    - host: files.hudapobuda.djnd.si
       http:
         paths:
           - path: /

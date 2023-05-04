@@ -52,11 +52,11 @@
     shareLink.addEventListener("click", function (event) {
       event.preventDefault();
       if (event.currentTarget.className.indexOf('isfbbox') != -1) {
-        const url = `https://www.facebook.com/dialog/feed?app_id=301375193309601&redirect_uri=https%3A%2F%2Fhudapobuda.si&link=https%3A%2F%2Fhudapobuda.si&ref=responsive`;
+        const url = `https://www.facebook.com/dialog/feed?app_id=301375193309601&redirect_uri=https%3A%2F%2Fhudapobuda.djnd.si&link=https%3A%2F%2Fhudapobuda.djnd.si&ref=responsive`;
         window.open(url, '_blank');
       }
       if (event.currentTarget.className.indexOf('isfbnoapp') != -1) {
-        const url = `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhudapobuda.si`;
+        const url = `https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhudapobuda.djnd.si`;
         window.open(url, 'pop', 'width=600, height=400, scrollbars=no');
       }
       if (event.currentTarget.className.indexOf('isfbinitiative') != -1) {
@@ -64,7 +64,7 @@
         window.open(url, '_blank');
       }
       if (event.currentTarget.className.indexOf('istwbox') != -1) {
-        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.SHARE_TWEET_TEXT + ' https://hudapobuda.si')}`;
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.SHARE_TWEET_TEXT + ' https://hudapobuda.djnd.si')}`;
         window.open(url, '_blank');
       }
       if (event.currentTarget.className.indexOf('istwinitiative') != -1) {
