@@ -18,15 +18,14 @@ spec:
       securityContext:
         fsGroup: 1000
       volumes:
-        - name: hudapobuda-persistent-storage
-          persistentVolumeClaim:
-            claimName: hudapobuda-pvc
+        - name: hudapobuda-storage
+          emptyDir: {}
       initContainers:
         - name: collectstatic
           image: hudapobuda
           volumeMounts:
-            - name: hudapobuda-persistent-storage
-              mountPath: /pvc
+            - name: hudapobuda-storage
+              mountPath: /storage
           command:
             - python
             - manage.py
@@ -68,8 +67,8 @@ spec:
         - name: hudapobuda
           image: hudapobuda
           volumeMounts:
-            - name: hudapobuda-persistent-storage
-              mountPath: /pvc
+            - name: hudapobuda-storage
+              mountPath: /storage
           command:
             - gunicorn
             - hudapobuda.wsgi:application
@@ -105,7 +104,7 @@ spec:
               protocol: TCP
           image: nginx:alpine
           volumeMounts:
-            - name: hudapobuda-persistent-storage
+            - name: hudapobuda-storage
               mountPath: /usr/share/nginx/html
           resources:
             requests:
