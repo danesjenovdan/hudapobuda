@@ -92,11 +92,11 @@ spec:
               value: hudapobuda.settings.production
           resources:
             requests:
-              memory: 500Mi
-              cpu: 200m
+              memory: 200Mi
+              cpu: 100m
             limits:
-              memory: 500Mi
-              cpu: 200m
+              memory: 200Mi
+              cpu: 100m
         - name: hudapobuda-nginx
           ports:
             - name: http
@@ -108,8 +108,8 @@ spec:
               mountPath: /usr/share/nginx/html
           resources:
             requests:
-              memory: 100Mi
+              memory: 50Mi
               cpu: 50m
             limits:
-              memory: 100Mi
+              memory: 50Mi
               cpu: 50m
