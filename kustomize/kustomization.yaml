@@ -8,4 +8,4 @@ resources:
 images:
   - name: hudapobuda
     newName: rg.fr-par.scw.cloud/djnd/hudapobuda
-    newTag: '7e9c625e2c9e25516260d2fdeecd4ceff00b7b39'
+    newTag: '2754b4f6fb443736a458d4a7eb66ba94ec71eb3d'
