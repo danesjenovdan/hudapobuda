@@ -14,7 +14,6 @@ spec:
       labels:
         app: hudapobuda
     spec:
-      nodeName: scw-djnd-test-cluster-djnd-beefier-pool-ee8640
       securityContext:
         fsGroup: 1000
       volumes:
